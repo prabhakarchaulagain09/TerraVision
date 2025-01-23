@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seed Bank</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Seed Bank</h1>
+        <p>Welcome to the Seed Bank page. Here you can find information about various seeds.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Seed Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for seed in seeds %}
+                <tr>
+                    <td>{{ seed }}</td>
+                    <td>
+                        <form action="{{ url_for('add_to_cart') }}" method="post" style="display:inline;">
+                            <input type="hidden" name="seed" value="{{ seed }}">
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                        <form action="{{ url_for('remove_from_cart') }}" method="post" style="display:inline;">
+                            <input type="hidden" name="seed" value="{{ seed }}">
+                            <button type="submit">Remove from Cart</button>
+                        </form>
+                        <form action="{{ url_for('buy_now') }}" method="post" style="display:inline;">
+                            <input type="hidden" name="seed" value="{{ seed }}">
+                            <button type="submit">Buy Now</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>

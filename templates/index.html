@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TerraVision - Crop Prediction</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+
+</head>
+<body>
+    <h1>Welcome to TerraVision</h1>
+    <h2>Predict the Most Suitable Crop</h2>
+    <form action="/predict" method="post">
+        <label for="nitrogen">Nitrogen (N):</label>
+        <input type="text" name="nitrogen" required><br><br>
+
+        <label for="phosphorus">Phosphorus (P):</label>
+        <input type="text" name="phosphorus" required><br><br>
+
+        <label for="potassium">Potassium (K):</label>
+        <input type="text" name="potassium" required><br><br>
+
+        <label for="temperature">Temperature (°C):</label>
+        <input type="text" name="temperature" required><br><br>
+
+        <label for="humidity">Humidity (%):</label>
+        <input type="text" name="humidity" required><br><br>
+
+        <label for="ph">pH Level:</label>
+        <input type="text" name="ph" required><br><br>
+
+        <label for="rainfall">Rainfall (mm):</label>
+        <input type="text" name="rainfall" required><br><br>
+
+        <button type="submit">Predict Crop</button>
+    </form>
+</body>
+</html>
