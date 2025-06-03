@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Listing - TerraVision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        .main-container {
+            width: 80%;
+            margin: 20px auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px; 
+        }
+
+        .checkout-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 60%;
+        }
+
+        .checkout-summary {
+           background: white;
+           padding: 20px;
+           border-radius: 10px;
+           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+           width: 35%;
+        }
+
+        .cart-summary p {
+            margin: 10px 0;
+        }
+        .cart-summary button {
+            width: 100%;
+            padding: 10px;
+            background: rgb(59, 59, 255);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .cart-table th, .cart-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .cart-table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"] {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+        /* Your existing styles here */
+        .qr-container {
+            display: none;
+            margin-top: 5px;
+        }
+        .screenshot-upload {
+            display: none;
+            margin-top: 10px;
+        }
+        .screenshot-upload input[type="file"] {
+            padding: 8px;
+            font-size: 16px;
+        }
+        .qr-container img {
+            max-width: 70%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">TerraVision</div>
+        <nav>
+            <div class="nav-right">
+            <ul class="menu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="croprecommendation.html">Crop Recommendation</a></li>
+                <li><a href="seedbank.html">Seed Bank</a></li>
+                <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
+                <li><a href="myaccount.html"><i class="fa fa-user"></i></a></li>
+                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
+            </ul>
+            <div id="google_element"></div>
+            <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+            <script>
+            function loadGoogleTranslate() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en', 
+                    includedLanguages: 'en,ne', 
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_element');
+            }
+            </script>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <!-- Checkout Form Section -->
+        <div class="checkout-container">
+            <form action="process_order.php" method="POST" onsubmit="return validateForm()">
+                <!-- Left Side: Personal & Address Details -->
+                <div class="form-left">
+                    <label>Full name *<br>
+                        <input type="text" name="first_name" required placeholder="Enter your full name">
+                    </label><br>
+
+                    <label>Phone *<br>
+                        <input type="tel" name="phone" required placeholder="Enter your phone number">
+                    </label><br>
+
+                    <label>Email address *<br>
+                        <input type="email" name="email" required placeholder="Enter your email address">
+                    </label><br>
+
+                    <label>Street address *<br>
+                        <input type="text" name="address" required placeholder="Enter your street address">
+                    </label><br>
+
+                    <label>Town / City *<br>
+                        <input type="text" name="city" required placeholder="Enter your city">
+                    </label><br>
+
+                    <label>Province *<br>
+                        <input type="text" name="province" required placeholder="Enter your province">
+                    </label><br>
+
+                    <label>Postcode / ZIP (optional)<br>
+                        <input type="text" name="postcode" placeholder="Enter your postcode">
+                    </label><br>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- Checkout Summary Section (Right side) -->
+        <div class="checkout-summary">
+            <h3>Product Summary</h3>
+            <table class="cart-table" id="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-body">
+                    <!-- Cart items will be dynamically loaded here -->
+                </tbody>
+            </table>
+
+            <div class="cart-summary">
+                <p><strong>Subtotal: <span id="checkout-subtotal">Rs. 0</span></strong></p>
+                <p><strong>Total: <span id="checkout-total">Rs. 0</span></strong></p>
+
+                <br><h3>Payment Method</h3>
+                <label>
+                    <input type="radio" name="payment_method" value="cod" checked onclick="togglePaymentMethod()"> Cash on delivery
+                </label><br>
+                <label>
+                    <input type="radio" name="payment_method" value="esewa" onclick="togglePaymentMethod()"> eSewa
+                </label><br>
+
+                <div class="qr-container" id="qr-container">
+                    <h4>Scan the QR code for payment:</h4>
+                    <img src="C:\Users\Acer\OneDrive\Desktop\Website\images\qr.jpg" alt="eSewa QR Code">
+                </div>
+
+                <div class="screenshot-upload" id="screenshot-upload">
+                    <label for="payment-screenshot">Upload Screenshot of Payment:</label><br>
+                    <input type="file" id="payment-screenshot" name="payment-screenshot" accept="image/*">
+                </div>
+
+                <button type="submit">Place Order</button>
+            </div>
+        </div>
+    </div>
+
+    <form action="process_order.php" method="POST" onsubmit="return validateForm()">
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    loadCheckout(); // Load checkout details when page loads
+});
+
+document.querySelector("button[type='submit']").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get form data safely
+    let fullName = document.querySelector("input[name='first_name']").value.trim();
+    let phone = document.querySelector("input[name='phone']").value.trim();
+    let email = document.querySelector("input[name='email']").value.trim();
+    let address = [
+        document.querySelector("input[name='address']").value.trim(),
+        document.querySelector("input[name='city']").value.trim()
+    ].filter(Boolean).join(", ");
+    let paymentMethodInput = document.querySelector("input[name='payment_method']:checked");
+    let paymentMethod = paymentMethodInput ? paymentMethodInput.value : "";
+
+    // Check if any required field is empty
+    if (!fullName || !phone || !email || !address || !paymentMethod) {
+        alert("Please fill in all the required fields.");
+        return; // Stop further execution if validation fails
+    }
+
+    // Get cart items from localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cartItems = cart.map(item => ({
+        name: item.name,
+        price: parseFloat(item.price) || 0,
+        quantity: parseInt(item.quantity, 10) || 1
+    }));
+
+    // Calculate total price
+    let totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+
+    // Generate a unique order number
+    let orderNumber = "#ORD" + Math.floor(1000 + Math.random() * 9000);
+
+    // Store order details in localStorage
+    let orderDetails = {
+        orderNumber: orderNumber,
+        fullName: fullName,
+        phone: phone,
+        email: email,
+        address: address,
+        paymentMethod: paymentMethod,
+        cartItems: cartItems,
+        totalPrice: totalPrice
+    };
+
+    localStorage.setItem("orderDetails", JSON.stringify(orderDetails));
+
+    // Redirect to order confirmation page
+    window.location.href = "order.html";
+});
+
+function loadCheckout() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartBody = document.getElementById('cart-body');
+    cartBody.innerHTML = '';
+
+    if (cart.length === 0) {
+        cartBody.innerHTML = '<tr><td colspan="4">Your cart is empty.</td></tr>';
+        return;
+    }
+
+    cart.forEach(item => {
+        const price = parseFloat(item.price) || 0;
+        const quantity = parseInt(item.quantity, 10) || 1;
+        const subtotal = price * quantity;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>Rs. ${price}</td>
+            <td>${quantity}</td>
+            <td>Rs. ${subtotal}</td>
+        `;
+        cartBody.appendChild(row);
+    });
+
+    updateCheckoutTotals(cart);
+}
+
+function updateCheckoutTotals(cart) {
+    let cartTotal = cart.reduce((total, item) => {
+        const price = parseFloat(item.price) || 0;
+        const quantity = parseInt(item.quantity, 10) || 1;
+        return total + (price * quantity);
+    }, 0);
+
+    document.getElementById('checkout-total').innerText = `Rs. ${cartTotal}`;
+    document.getElementById('checkout-subtotal').innerText = `Rs. ${cartTotal}`;
+}
+
+function togglePaymentMethod() {
+    const paymentMethod = document.querySelector('input[name="payment_method"]:checked')?.value;
+    const qrContainer = document.getElementById('qr-container');
+    const screenshotUpload = document.getElementById('screenshot-upload');
+
+    if (paymentMethod === 'esewa') {
+        qrContainer.style.display = 'block';
+        screenshotUpload.style.display = 'block';
+    } else {
+        qrContainer.style.display = 'none';
+        screenshotUpload.style.display = 'none';
+    }
+}
+    </script>
+
+<footer>
+    <p>Copyright © 2025 TerraVision</p>
+</footer>
+</body>
+</html>
+    
+    

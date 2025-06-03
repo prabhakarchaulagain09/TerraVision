@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist - TerraVision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #a8f28c;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #a8f28c;
+        }
+
+        .product-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .actions button {
+            background: #0073e6;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .actions button:hover {
+            background: #005bb5;
+        }
+
+        .wishlist-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .wishlist-actions a {
+            text-decoration: none;
+        }
+
+        .wishlist-actions button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .wishlist-actions .back-btn {
+            background: #ccc;
+            color: black;
+        }
+
+        .wishlist-actions .back-btn:hover {
+            background: #bbb;
+        }
+
+        .wishlist-actions .add-selected {
+            background: #28a745;
+            color: white;
+        }
+
+        .wishlist-actions .add-selected:hover {
+            background: #218838;
+        }
+
+        .wishlist-actions .add-all {
+            background: #ff9800;
+            color: white;
+        }
+
+        .wishlist-actions .add-all:hover {
+            background: #e68900;
+        }
+    </style>
+</head>
+<body>
+
+    <header>My Wishlist</header>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Product Image</th>
+                    <th>Product Name</th>
+                    <th>Unit Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" class="wishlist-checkbox" data-name="Beans"></td>
+                    <td><img src="beans.jpg" alt="Beans" class="product-image"></td>
+                    <td>Beans</td>
+                    <td>Rs.100</td>
+                    <td><button onclick="addToCart('Beans')">Add to Cart</button></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="wishlist-checkbox" data-name="Watermelon Seed"></td>
+                    <td><img src="watermelon.jpg" alt="Watermelon Seed" class="product-image"></td>
+                    <td>Watermelon Seed</td>
+                    <td>Rs.280</td>
+                    <td><button onclick="addToCart('Watermelon Seed')">Add to Cart</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="wishlist-actions">
+            <a href="seedbank.html">
+                <button class="back-btn">Back to Products</button>
+            </a>
+            <button class="add-selected" onclick="addAllToCart()">Add Selected to Cart</button>
+            <button class="add-all" onclick="addEntireWishlistToCart()">Add All to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(productName) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            const item = wishlist.find(item => item.name === productName);
+            if (item && !cart.find(cartItem => cartItem.name === item.name)) {
+                cart.push(item);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert(productName + ' added to cart!');
+            }
+        }
+
+        function addAllToCart() {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            const selectedItems = document.querySelectorAll('.wishlist-checkbox:checked');
+            if (selectedItems.length === 0) {
+                alert('No items selected.');
+                return;
+            }
+
+            selectedItems.forEach(checkbox => {
+                const name = checkbox.getAttribute('data-name');
+                const item = wishlist.find(item => item.name === name);
+                if (item && !cart.find(cartItem => cartItem.name === item.name)) {
+                    cart.push(item);
+                }
+            });
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('Selected items added to cart!');
+        }
+
+        function addEntireWishlistToCart() {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            wishlist.forEach(item => {
+                if (!cart.find(cartItem => cartItem.name === item.name)) {
+                    cart.push(item);
+                }
+            });
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert('All wishlist items added to cart!');
+        }
+    </script>
+
+</body>
+</html>
+
+
+.translated-ltr{
+    margin-top: -40px;
+}
+.translated-ltr{
+    margin-top: -40px;
+}
+.goog-te-banner-frame{
+    display: none;
+    margin-top: -20px;
+}
+.goog-logo-link{
+    display: none !important;
+}
+.goog-te-gadget{
+    color: transparent !important;
+}

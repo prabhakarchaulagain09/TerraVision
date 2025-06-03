@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Listing - TerraVision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .cart-container {
+            width: 65%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 24px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0; 
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .product-img {
+            width: 28px;
+            height: 28px;
+            border-radius: 15px;
+            margin-right: 10px;
+            vertical-align: middle;
+            object-fit: cover;
+        }
+
+        .product-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-box {
+            display: flex;
+            gap: 5px;
+        }
+
+        .quantity-box button {
+            padding: 5px;
+            border: none;
+            background: #ddd;
+            cursor: pointer;
+            font-size: 16px;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+        .quantity-box input {
+            width: 40px;
+            text-align: center;
+            border: none;
+            font-size: 16px;
+            height: 25px;
+            vertical-align: middle;
+        }
+
+        .remove-btn {
+            background-color: red;
+            color: white;
+            padding: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .cart-summary {
+            width: 30%;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            margin-left: 30px; /* Increased gap */
+        }
+
+        .cart-summary h3 {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .cart-summary p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .cart-summary button {
+            width: 100%;
+            padding: 10px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">TerraVision</div>
+        <nav>
+            <div class="nav-right">
+                <ul class="menu">
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="croprecommendation.html">Crop Recommendation</a></li>
+                    <li><a href="seedbank.html">Seed Bank</a></li>
+                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
+                    <li><a href="myaccount.html"><i class="fa fa-user"></i></a></li>
+                    <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <div class="cart-container">
+            <h2>Your Cart</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Remove</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-body">
+                </tbody>
+            </table>
+        </div>
+    
+        <div class="cart-summary">
+            <h3>Cart Totals</h3><br>
+            <p>Subtotal: <span id="subtotal">Rs. 0</span></p>
+            <p><strong>Total: <span id="total">Rs. 0</span></strong></p><br>
+            <button onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to load the cart based on the logged-in user
+        // Function to load the cart based on the logged-in user
+function loadCart() {
+    const username = localStorage.getItem("loggedInUser");
+    if (!username) {
+        // Alert the user and redirect to the myaccount.html page if not logged in
+        alert("Please log in first!");
+        window.location.href = "myaccount.html"; // Redirect to login page
+        return;
+    }
+
+    // Get the cart of the logged-in user from localStorage
+    const allCarts = JSON.parse(localStorage.getItem("allCarts")) || {};
+    const cart = allCarts[username] || [];
+    const cartTable = document.getElementById('cart-body');
+    cartTable.innerHTML = '';
+
+    if (cart.length === 0) {
+        cartTable.innerHTML = '<tr><td colspan="5">Your cart is empty.</td></tr>';
+        return;
+    }
+
+    cart.forEach((item, index) => {
+        const price = parseFloat(item.price) || 0;
+        const quantity = item.quantity ? parseInt(item.quantity, 10) : 1;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><button class="remove-btn" onclick="removeItem(${index})">×</button></td>
+            <td>
+                <div class="product-info">
+                    <img src="${item.image}" class="product-img"> 
+                    ${item.name}
+                </div>
+            </td>
+            <td>Rs. ${price}</td>
+            <td class="quantity-box">
+                <button onclick="updateQuantity(${index}, -1)">-</button>
+                <input type="text" value="${quantity}" id="qty-${index}" readonly>
+                <button onclick="updateQuantity(${index}, 1)">+</button>
+            </td>
+            <td id="subtotal-${index}">Rs. ${price * quantity}</td>
+        `;
+        cartTable.appendChild(row);
+
+        // Set the initial subtotal for this row
+        updateSubtotal(index);
+    });
+
+    // Update the cart totals
+    updateCartTotals(cart);
+}
+
+
+    const allCarts = JSON.parse(localStorage.getItem("allCarts")) || {};
+    const cart = allCarts[username] || [];
+
+    if (cart.length === 0) {
+        alert("Your cart is empty. Please add items before proceeding.");
+        return;
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.location.href = "checkout.html"; // Redirect to checkout page
+
+
+        // Load cart when the page is loaded
+        window.onload = loadCart;
+    </script>
+
+    <footer>
+        <p>Copyright © 2025 TerraVision</p>
+    </footer>
+</body>
+</html>

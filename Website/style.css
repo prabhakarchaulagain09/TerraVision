@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+header {
+    background-color: #78fb7d;
+    padding: 27px 270px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+}
+nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+.nav-right {
+    margin-left: auto; 
+    display: flex;
+    align-items: center; 
+}
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+    margin: 0;
+    padding: 0;
+}
+.menu li {
+    display: inline-block;
+}
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu a:hover {
+    color: #0073e6; 
+}
+
+#google_element {
+    position: fixed;
+    margin-top: 0px;
+    right: 87px;
+    padding: 0px;
+    background: white;
+    border-radius: 1px; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+    z-index: 1000; 
+}
+
+footer {
+    background-color: #b1aeae;
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}

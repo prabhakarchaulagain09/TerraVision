@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Listing - TerraVision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        .about-img {
+            display: block;
+            width: 100vw;
+            max-width: 100%; 
+            height: 655px; 
+            margin: 0; 
+            border-radius: 0;
+            object-fit: cover; 
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            padding: 40px;
+        }
+
+        .feature-box {
+            flex: 1;
+            background: #f4f4f4;
+            padding: 25px;
+            text-align: center;
+            margin: 0 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-box p {
+        color: #333;  /* Changed from light color to dark for better visibility */
+        }
+
+        h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        p {
+            color: #dbd7d7;
+        }
+        .contact-us {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: #f0f4f8; /* Light shaded background */
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 30px; /* Add some space at the bottom of the contact form */
+        }
+        .contact-us h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .contact-us input, .contact-us textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #c0c0c0;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-us button {
+            background-color: #0073e6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .contact-us button:hover {
+            background-color: #005bb5;
+        }
+        p {
+            color: #1a1919;
+        }
+
+        /* Custom Styles for Google Translate */
+        #google_element .goog-te-gadget {
+            height: 30px !important; /* Smaller height */
+            font-size: 12px !important; /* Reduce text size */
+        }
+
+        #google_element .goog-te-gadget-simple {
+            padding: 0 !important; /* Remove any unnecessary padding */
+        }
+
+        #google_element .goog-te-menu-value {
+            font-size: 12px !important; /* Make the language selector smaller */
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">TerraVision</div>
+        <nav>
+            <div class="nav-right">
+            <ul class="menu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="croprecommendation.html">Crop Recommendation</a></li>
+                <li><a href="seedbank.html">Seed Bank</a></li>
+                <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
+                <li><a href="myaccount.html"><i class="fa fa-user"></i></a></li>
+                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
+            </ul>
+            <div id="google_element"></div>
+            <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+            <script>
+            function loadGoogleTranslate() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en', 
+                    includedLanguages: 'en,ne', 
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_element');
+            }
+            </script>
+        </nav>
+    </header>
+    
+    <img src="C:\Users\Acer\Music\front.png" alt="Soil Testing" class="about-img">
+
+    <section class="features">
+        <div class="feature-box">
+            <h3>🌱 AI-Based Crop Recommendation</h3>
+            <p>Enter soil & climate details and get the best crop suggestion using ML.</p>
+        </div>
+        <div class="feature-box">
+            <h3>🛒 Buy Seeds & Plants</h3>
+            <p>Explore a variety of seeds & plants and order from trusted sellers.</p>
+        </div>
+        <div class="feature-box">
+            <h3>📊 Smart Farming Insights</h3>
+            <p>Get personalized tips on fertilizers, soil health, and weather guidance.</p>
+        </div>
+        <div class="feature-box">
+            <h3>⚡ Easy-to-Use Dashboard</h3>
+            <p>Simple & intuitive interface for hassle-free data input and purchasing.</p>
+        </div>
+    </section>
+
+    <section class="contact-us">
+        <h2>Contact Us</h2>
+        <form action="#" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    
+
+    <footer>
+        <p>Copyright © 2025 TerraVision</p>
+    </footer>
+</body>
+</html>

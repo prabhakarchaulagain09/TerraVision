@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Listing - TerraVision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        header {
+            background-color: #a8f28c;
+            padding: 30px 200px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+        .menu li {
+            display: inline-block;
+        }
+        .menu a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .menu a:hover {
+            color: #0073e6; /* Changed hover color to blue */
+        }
+        .language-toggle img {
+            width: 25px;
+            height: 20px;
+            margin-right: 15px;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            margin-left:20px
+        }
+        .search-container input {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-container button {
+            background-color: #0073e6;
+            color: white;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+        .search-container button:hover {
+            background-color: #005bb5;
+        }
+        footer {
+            background-color: #b1aeae;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">TerraVision</div>
+        <nav>
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Search...">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
+            <ul class="menu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="croprecommendation.html">Crop Recommendation</a></li>
+                <li><a href="seedbank.html">Seed Bank</a></li>
+            </ul>
+            <div class="language-toggle">
+                <img src="C:\Users\Acer\Music\usa .jpg" alt="English" id="english" onclick="changeLanguage('en')">
+                <img src="C:\Users\Acer\Music\NP.png" alt="Nepali" id="nepali" onclick="changeLanguage('ne')">
+            </div>
+            <ul class="menu">
+                <li><a href="wishlist.htm"><i class="fa fa-heart"></i></a></li>
+                <li><a href="myaccount"><i class="fa fa-user"></i></a></li>
+                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+    <footer>
+        <p>Copyright © 2025 TerraVision | Powered by IIMS Student</p>
+    </footer>
+</body>
+</html>
