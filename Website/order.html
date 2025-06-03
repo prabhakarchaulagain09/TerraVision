@@ -3,201 +3,583 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Listing - TerraVision</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
-    <link rel="stylesheet" href="style.css"> 
-    <style>
-        .order-container {
-            width: 60%;        
-            max-width: 1200px;
-            margin: 50px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        .header {
-            background: #83fc87;
-            padding: 3px 3px;
-            text-align: center;
-            border-radius: 10px;
-           
-        }
-        
-        .order-details {
-            margin-top: 20px;
-        }
-        .table th, .table td {
-            text-align: left;
-        }
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-        }
-        .table th, .table td {
-            text-align: left;
-            padding: 15px 20px; /* Adds spacing */
-            border-bottom: 1px solid #f0efef; /* Light gray line between rows */
-        }
-        .table th {
-            width: 40%;
-            font-weight: bold;
-            background-color: #f9f9f9; /* Light background for headers */
-        }
-        .table td {
-            width: 60%;
-        }
-        .back-button-container {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .back-button {
-            background-color: #0073e6; /* Blue color for button */
-            color: white;
-            border: none;
-            padding: 12px 40px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-bottom: 66px;
-        }
-
-        .back-button:hover {
-            background-color: #005bb5; /* Darker blue on hover */
-        }
-        
-    </style>
+    <title>Order Confirmation - TerraVision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-        <body>  
-            <header>
-                <div class="logo">TerraVision</div>
-                <nav>
-                    <div class="nav-right">
-                    <ul class="menu">
-                        <li><a href="home.html">Home</a></li>
-                        <li><a href="aboutus.html">About Us</a></li>
-                        <li><a href="croprecommendation.html">Crop Recommendation</a></li>
-                        <li><a href="seedbank.html">Seed Bank</a></li>
-                        <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                        <li><a href="myaccount.html"><i class="fa fa-user"></i></a></li>
-                        <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-                    <div id="google_element"></div>
-                    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
-         
-            <script>
-                    function loadGoogleTranslate() {
-                    new google.translate.TranslateElement({
-                    pageLanguage: 'en', 
-                    includedLanguages: 'en,ne', 
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-                    }, 'google_element');
-                    }
-            </script>
-                </nav>
-            </header>
-        <body>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="home.html" class="logo">TerraVision</a>
+            <div class="nav-container">
+                <div class="hamburger" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="menu" id="main-menu">
+                    <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="aboutus.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="croprecommendation.html"><i class="fas fa-seedling"></i> Crop Recommendation</a></li>
+                    <li><a href="seedbank.html"><i class="fas fa-store"></i> Seed Bank</a></li>
+                    <li><a href="wishlist.html"><i class="fas fa-heart"></i></a></li>
+                    <li><a href="myaccount.html"><i class="fas fa-user"></i></a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
+                </ul>
+                <div id="google_element"></div>
+            </div>
+        </div>
+    </header>
 
-            <div class="order-container">
-                <div class="header">
-                    <h3>Thank you! Your order has been received 🎉</h3>
+    <main class="section">
+        <div class="container">
+            <!-- Success Header -->
+            <div class="success-header text-center mb-5">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
                 </div>
-        
-                <div class="order-details">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <th>Order Number:</th>
-                                <td id="orderNumber"></td>
-                            </tr>
-                            <tr>
-                                <th>Name:</th>
-                                <td id="fullName"></td>
-                            </tr>
-                            <tr>
-                                <th>Address:</th>
-                                <td id="address"></td>
-                            </tr>
-                            <tr>
-                                <th>Contact Number:</th>
-                                <td id="phone"></td>
-                            </tr>
-                            <tr>
-                                <th>Email:</th>
-                                <td id="email"></td>
-                            </tr>
-                            <tr>
-                                <th>Payment Method:</th>
-                                <td id="paymentMethod"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-        
-                    <h4>Order Details:</h4>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Item</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cartItems"></tbody>
-                    </table>
-        
-                    <h4>Total Price: <strong id="totalPrice"></strong></h4>
-                </div>
+                <h1>Order Confirmed!</h1>
+                <p class="success-message">Thank you for your order. We'll send you a confirmation email shortly.</p>
             </div>
 
-            <!-- Add this at the bottom of your order container or after your last table -->
-<div class="back-button-container">
-    <a href="home.html">
-        <button class="back-button">Back to Home Page</button>
-    </a>
-</div>
+            <!-- Order Details -->
+            <div class="order-confirmation">
+                <div class="order-grid">
+                    <!-- Order Information -->
+                    <div class="order-info-section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-receipt"></i> Order Information</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <label>Order Number</label>
+                                        <span id="orderNumber" class="order-number"></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <label>Order Date</label>
+                                        <span id="orderDate"></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <label>Payment Method</label>
+                                        <span id="paymentMethod"></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <label>Order Status</label>
+                                        <span class="status-badge processing">
+                                            <i class="fas fa-clock"></i> Processing
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        
+                        <!-- Customer Information -->
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h3><i class="fas fa-user"></i> Customer Information</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="customer-info">
+                                    <div class="info-section">
+                                        <h4><i class="fas fa-user-circle"></i> Contact Details</h4>
+                                        <p><strong>Name:</strong> <span id="fullName"></span></p>
+                                        <p><strong>Email:</strong> <span id="email"></span></p>
+                                        <p><strong>Phone:</strong> <span id="phone"></span></p>
+                                    </div>
+                                    <div class="info-section">
+                                        <h4><i class="fas fa-map-marker-alt"></i> Delivery Address</h4>
+                                        <p id="address"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="order-summary-section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-shopping-bag"></i> Order Summary</h3>
+                            </div>
+                            <div class="card-body">
+                                <!-- Order Items -->
+                                <div class="order-items" id="orderItems">
+                                    <!-- Items will be loaded here -->
+                                </div>
+
+                                <!-- Order Totals -->
+                                <div class="order-totals">
+                                    <div class="total-row">
+                                        <span>Subtotal:</span>
+                                        <span id="subtotal">Rs. 0</span>
+                                    </div>
+                                    <div class="total-row">
+                                        <span>Shipping:</span>
+                                        <span class="text-success">Free</span>
+                                    </div>
+                                    <div class="total-row">
+                                        <span>Tax:</span>
+                                        <span>Rs. 0</span>
+                                    </div>
+                                    <div class="total-row total-final">
+                                        <span><strong>Total:</strong></span>
+                                        <span><strong id="totalPrice">Rs. 0</strong></span>
+                                    </div>
+                                </div>
+
+                                <!-- Estimated Delivery -->
+                                <div class="delivery-info">
+                                    <div class="delivery-card">
+                                        <i class="fas fa-truck"></i>
+                                        <div>
+                                            <h4>Estimated Delivery</h4>
+                                            <p id="estimatedDelivery">3-5 business days</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="order-actions text-center mt-5">
+                    <a href="home.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-home"></i> Continue Shopping
+                    </a>
+                    <button onclick="printOrder()" class="btn btn-outline btn-large ml-3">
+                        <i class="fas fa-print"></i> Print Order
+                    </button>
+                </div>
+
+                <!-- Next Steps -->
+                <div class="next-steps mt-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-info-circle"></i> What's Next?</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="steps-grid">
+                                <div class="step-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <h4>Confirmation Email</h4>
+                                    <p>You'll receive an order confirmation email within a few minutes.</p>
+                                </div>
+                                <div class="step-item">
+                                    <i class="fas fa-box"></i>
+                                    <h4>Order Processing</h4>
+                                    <p>We'll prepare your seeds with care and quality assurance.</p>
+                                </div>
+                                <div class="step-item">
+                                    <i class="fas fa-shipping-fast"></i>
+                                    <h4>Shipping</h4>
+                                    <p>Your order will be shipped within 1-2 business days.</p>
+                                </div>
+                                <div class="step-item">
+                                    <i class="fas fa-seedling"></i>
+                                    <h4>Happy Farming!</h4>
+                                    <p>Start your agricultural journey with premium quality seeds.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
     <footer>
-        <p>Copyright © 2025 TerraVision</p>
-            </footer>
-        
+        <div class="container">
+            <p>&copy; 2025 TerraVision. All rights reserved.</p>
+        </div>
+    </footer>
 
-            <script>
-                // Retrieve the order details from localStorage
-                const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
-        
-                if (orderDetails) {
-                    // Displaying order information
-                    document.getElementById('orderNumber').innerText = orderDetails.orderNumber;
-                    document.getElementById('fullName').innerText = orderDetails.fullName;
-                    document.getElementById('address').innerText = orderDetails.address;
-                    document.getElementById('phone').innerText = orderDetails.phone;
-                    document.getElementById('email').innerText = orderDetails.email;
-                    document.getElementById('paymentMethod').innerText = orderDetails.paymentMethod;
-                    
-                    // Displaying cart items
-                    const cartItemsContainer = document.getElementById('cartItems');
-                    orderDetails.cartItems.forEach(item => {
-                        const row = document.createElement('tr');
-                        const totalPrice = item.price * item.quantity;
-                        row.innerHTML = `
-                            <td>${item.name}</td>
-                            <td>Rs. ${item.price}</td>
-                            <td>${item.quantity}</td>
-                            <td>Rs. ${totalPrice}</td>
-                        `;
-                        cartItemsContainer.appendChild(row);
-                    });
-        
-                    // Display total price
-                    document.getElementById('totalPrice').innerText = `Rs. ${orderDetails.totalPrice}`;
-                } else {
-                    alert("Order details not found.");
-                }
-            </script>
-        </body>
-        </html>
+    <!-- Google Translate Script -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+    <script>
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,ne',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_element');
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            loadOrderDetails();
+        });
+
+        function loadOrderDetails() {
+            const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+
+            if (!orderDetails) {
+                showErrorState();
+                return;
+            }
+
+            // Display order information
+            document.getElementById('orderNumber').textContent = orderDetails.orderNumber;
+            document.getElementById('orderDate').textContent = new Date().toLocaleDateString();
+            document.getElementById('paymentMethod').textContent = formatPaymentMethod(orderDetails.paymentMethod);
+            
+            // Display customer information
+            document.getElementById('fullName').textContent = orderDetails.fullName;
+            document.getElementById('email').textContent = orderDetails.email;
+            document.getElementById('phone').textContent = orderDetails.phone;
+            document.getElementById('address').textContent = orderDetails.address;
+
+            // Display order items
+            displayOrderItems(orderDetails.cartItems);
+
+            // Display totals
+            document.getElementById('subtotal').textContent = `Rs. ${orderDetails.totalPrice}`;
+            document.getElementById('totalPrice').textContent = `Rs. ${orderDetails.totalPrice}`;
+
+            // Set estimated delivery
+            const deliveryDate = new Date();
+            deliveryDate.setDate(deliveryDate.getDate() + 5);
+            document.getElementById('estimatedDelivery').textContent = 
+                `${deliveryDate.toLocaleDateString()} (3-5 business days)`;
+        }
+
+        function displayOrderItems(items) {
+            const container = document.getElementById('orderItems');
+            container.innerHTML = '';
+
+            items.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="item-image">
+                    <div class="item-details">
+                        <h4>${item.name}</h4>
+                        <p>Quantity: ${item.quantity || 1}</p>
+                        <p class="item-price">Rs. ${item.price} each</p>
+                    </div>
+                    <div class="item-total">
+                        Rs. ${(parseFloat(item.price) * (item.quantity || 1))}
+                    </div>
+                `;
+                container.appendChild(itemElement);
+            });
+        }
+
+        function formatPaymentMethod(method) {
+            switch(method) {
+                case 'cod':
+                    return 'Cash on Delivery';
+                case 'esewa':
+                    return 'eSewa';
+                default:
+                    return method;
+            }
+        }
+
+        function showErrorState() {
+            document.querySelector('.order-confirmation').innerHTML = `
+                <div class="error-state text-center">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: var(--warning-color); margin-bottom: 1rem;"></i>
+                    <h3>Order Not Found</h3>
+                    <p>We couldn't find your order details. Please try again or contact support.</p>
+                    <a href="home.html" class="btn btn-primary">Return to Home</a>
+                </div>
+            `;
+        }
+
+        function printOrder() {
+            window.print();
+        }
+
+        const hamburger = document.getElementById('hamburger-menu');
+        const menu = document.getElementById('main-menu');
+        hamburger.onclick = function() {
+            menu.classList.toggle('open');
+        };
+    </script>
+
+    <style>
+        .success-header {
+            background: linear-gradient(135deg, var(--success-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--radius-lg);
+            margin-bottom: 2rem;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-message {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        .order-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .info-item label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .info-item span {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .order-number {
+            color: var(--primary-color) !important;
+            font-family: monospace;
+            font-size: 1.125rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status-badge.processing {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-color);
+        }
+
+        .customer-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .info-section h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .info-section p {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .order-items {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-details h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .item-details p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .item-price {
+            color: var(--primary-color) !important;
+            font-weight: 500 !important;
+        }
+
+        .item-total {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .order-totals {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .total-final {
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 1.125rem;
+        }
+
+        .delivery-info {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .delivery-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+        }
+
+        .delivery-card i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .delivery-card h4 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .delivery-card p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .order-actions {
+            padding: 2rem;
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ml-3 {
+            margin-left: 1rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .step-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+        }
+
+        .step-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .step-item h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .step-item p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .error-state {
+            padding: 4rem 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .order-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .customer-info {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .order-actions .btn {
+                display: block;
+                margin: 0.5rem 0;
+            }
+
+            .ml-3 {
+                margin-left: 0;
+            }
+        }
+
+        @media print {
+            header, footer, .order-actions, .next-steps {
+                display: none;
+            }
+            
+            .container {
+                max-width: none;
+                padding: 0;
+            }
+        }
+    </style>
+</body>
+</html>

@@ -3,247 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Listing - TerraVision</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
-    <link rel="stylesheet" href="style.css"> 
-    <style>
-        .main-container {
-            display: flex;
-            justify-content: space-between;
-            width: 80%;
-            margin: 20px auto;
-        }
-
-        .cart-container {
-            width: 65%;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 24px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0; 
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .product-img {
-            width: 28px;
-            height: 28px;
-            border-radius: 15px;
-            margin-right: 10px;
-            vertical-align: middle;
-            object-fit: cover;
-        }
-
-        .product-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .quantity-box {
-            display: flex;
-            gap: 5px;
-        }
-
-        .quantity-box button {
-            padding: 5px;
-            border: none;
-            background: #ddd;
-            cursor: pointer;
-            font-size: 16px;
-            width: 25px;
-            height: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-        }
-
-        .quantity-box input {
-            width: 40px;
-            text-align: center;
-            border: none;
-            font-size: 16px;
-            height: 25px;
-            vertical-align: middle;
-        }
-
-        .remove-btn {
-            background-color: red;
-            color: white;
-            padding: 5px;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .cart-summary {
-            width: 30%;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-            height: fit-content;
-            margin-left: 30px; /* Increased gap */
-        }
-
-        .cart-summary h3 {
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .cart-summary p {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-
-        .cart-summary button {
-            width: 100%;
-            padding: 10px;
-            background: blue;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-    </style>
+    <title>Shopping Cart - TerraVision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="logo">TerraVision</div>
-        <nav>
-            <div class="nav-right">
-                <ul class="menu">
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="aboutus.html">About Us</a></li>
-                    <li><a href="croprecommendation.html">Crop Recommendation</a></li>
-                    <li><a href="seedbank.html">Seed Bank</a></li>
-                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                    <li><a href="myaccount.html"><i class="fa fa-user"></i></a></li>
-                    <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
+        <div class="header-container">
+            <a href="home.html" class="logo">TerraVision</a>
+            <div class="nav-container">
+                <div class="hamburger" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="menu" id="main-menu">
+                    <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="aboutus.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="croprecommendation.html"><i class="fas fa-seedling"></i> Crop Recommendation</a></li>
+                    <li><a href="seedbank.html"><i class="fas fa-store"></i> Seed Bank</a></li>
+                    <li><a href="wishlist.html"><i class="fas fa-heart"></i></a></li>
+                    <li><a href="myaccount.html"><i class="fas fa-user"></i></a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
                 </ul>
+                <div id="google_element"></div>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <div class="main-container">
-        <div class="cart-container">
-            <h2>Your Cart</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Remove</th>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody id="cart-body">
-                </tbody>
-            </table>
-        </div>
-    
-        <div class="cart-summary">
-            <h3>Cart Totals</h3><br>
-            <p>Subtotal: <span id="subtotal">Rs. 0</span></p>
-            <p><strong>Total: <span id="total">Rs. 0</span></strong></p><br>
-            <button onclick="checkout()">Proceed to Checkout</button>
-        </div>
-    </div>
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1><i class="fas fa-shopping-cart" style="color: var(--primary-color);"></i> Your Shopping Cart</h1>
+                <p>Review your selected items before checkout</p>
+            </div>
 
-    <script>
-        // Function to load the cart based on the logged-in user
-        // Function to load the cart based on the logged-in user
-function loadCart() {
-    const username = localStorage.getItem("loggedInUser");
-    if (!username) {
-        // Alert the user and redirect to the myaccount.html page if not logged in
-        alert("Please log in first!");
-        window.location.href = "myaccount.html"; // Redirect to login page
-        return;
-    }
-
-    // Get the cart of the logged-in user from localStorage
-    const allCarts = JSON.parse(localStorage.getItem("allCarts")) || {};
-    const cart = allCarts[username] || [];
-    const cartTable = document.getElementById('cart-body');
-    cartTable.innerHTML = '';
-
-    if (cart.length === 0) {
-        cartTable.innerHTML = '<tr><td colspan="5">Your cart is empty.</td></tr>';
-        return;
-    }
-
-    cart.forEach((item, index) => {
-        const price = parseFloat(item.price) || 0;
-        const quantity = item.quantity ? parseInt(item.quantity, 10) : 1;
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td><button class="remove-btn" onclick="removeItem(${index})">×</button></td>
-            <td>
-                <div class="product-info">
-                    <img src="${item.image}" class="product-img"> 
-                    ${item.name}
+            <div class="grid grid-3" style="gap: 2rem; align-items: start;">
+                <!-- Cart Items -->
+                <div style="grid-column: span 2;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Cart Items</h2>
+                        </div>
+                        <div class="card-body" style="padding: 0;">
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Subtotal</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cart-body">
+                                        <!-- Cart items will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </td>
-            <td>Rs. ${price}</td>
-            <td class="quantity-box">
-                <button onclick="updateQuantity(${index}, -1)">-</button>
-                <input type="text" value="${quantity}" id="qty-${index}" readonly>
-                <button onclick="updateQuantity(${index}, 1)">+</button>
-            </td>
-            <td id="subtotal-${index}">Rs. ${price * quantity}</td>
-        `;
-        cartTable.appendChild(row);
 
-        // Set the initial subtotal for this row
-        updateSubtotal(index);
-    });
-
-    // Update the cart totals
-    updateCartTotals(cart);
-}
-
-
-    const allCarts = JSON.parse(localStorage.getItem("allCarts")) || {};
-    const cart = allCarts[username] || [];
-
-    if (cart.length === 0) {
-        alert("Your cart is empty. Please add items before proceeding.");
-        return;
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    window.location.href = "checkout.html"; // Redirect to checkout page
-
-
-        // Load cart when the page is loaded
-        window.onload = loadCart;
-    </script>
+                <!-- Cart Summary -->
+                <div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Order Summary</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                                <span>Subtotal:</span>
+                                <span id="subtotal">Rs. 0</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                                <span>Shipping:</span>
+                                <span style="color: var(--secondary-color);">Free</span>
+                            </div>
+                            <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--border-color);">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 2rem; font-weight: 600; font-size: 1.125rem;">
+                                <span>Total:</span>
+                                <span id="total" style="color: var(--primary-color);">Rs. 0</span>
+                            </div>
+                            <button onclick="checkout()" class="btn btn-primary" style="width: 100%;">
+                                <i class="fas fa-credit-card"></i> Proceed to Checkout
+                            </button>
+                            <a href="seedbank.html" class="btn btn-outline" style="width: 100%; margin-top: 1rem; text-align: center; display: block; text-decoration: none;">
+                                <i class="fas fa-arrow-left"></i> Continue Shopping
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <p>Copyright © 2025 TerraVision</p>
+        <div class="container">
+            <p>&copy; 2025 TerraVision. Empowering farmers with smart technology.</p>
+        </div>
     </footer>
+
+    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+    <script>
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en', 
+                includedLanguages: 'en,ne', 
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_element');
+        }
+
+        function loadCart() {
+            const username = localStorage.getItem("loggedInUser");
+            if (!username) {
+                alert("Please log in first!");
+                window.location.href = "myaccount.html";
+                return;
+            }
+
+            const allCarts = JSON.parse(localStorage.getItem("allCarts")) || {};
+            const cart = allCarts[username] || [];
+            const cartTable = document.getElementById('cart-body');
+            cartTable.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartTable.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 3rem;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">🛒</div>
+                            <h3>Your cart is empty</h3>
+                            <p style="color: var(--text-secondary);">Add some items to get started!</p>
+                            <a href="seedbank.html" class="btn btn-primary" style="margin-top: 1rem;">
+                                <i class="fas fa-store"></i> Browse Products
+                            </a>
+                        </td>
+                    </tr>
+                `;
+                updateCartTotals([]);
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                const price = parseFloat(item.price) || 0;
+                const quantity = item.quantity ? parseInt(item.quantity, 10) : 1;
+                const subtotal = price * quantity;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: var(--radius-md);">
+                            <div>
+                                <h4 style="margin: 0; font-size: 1rem;">${item.name}</h4>
+                                <small style="color: var(--text-secondary);">Premium Quality</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="font-weight: 600;">Rs. ${price}</td>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <button onclick="updateQuantity(${index}, -1)" class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.875rem;">-</button>
+                            <input type="text" value="${quantity}" id="qty-${index}" readonly style="width: 50px; text-align: center; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.25rem;">
+                            <button onclick="updateQuantity(${index}, 1)" class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.875rem;">+</button>
+                        </div>
+                    </td>
+                    <td style="font-weight: 600; color: var(--primary-color);" id="subtotal-${index}">Rs. ${subtotal}</td>
+                    <td>
+                        <button onclick="removeItem(${index})" class="btn" style="background: var(--error-color); padding: 0.5rem;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                cartTable.appendChild(row);
+            });
+
+            updateCartTotals(cart);
+        }
+
+        function updateQuantity(index, change) {
+            const username = localStorage.getItem("loggedInUser");
+            const allCarts = JSON.parse(localStorage.getItem("allCarts")) || {};
+            const cart = allCarts[username] || [];
+            
+            if (cart[index]) {
+                const newQuantity = (cart[index].quantity || 1) + change;
+                if (newQuantity > 0) {
+                    cart[index].quantity = newQuantity;
+                    allCarts[username] = cart;
+                    localStorage.setItem("allCarts", JSON.stringify(allCarts));
+                    loadCart();
+                }
+            }
+        }
+
+        function removeItem(index) {
+            const username = localStorage.getItem("loggedInUser");
+            const allCarts = JSON.parse(localStorage.getItem("allCarts")) || {};
+            const cart = allCarts[username] || [];
+            
+            cart.splice(index, 1);
+            allCarts[username] = cart;
+            localStorage.setItem("allCarts", JSON.stringify(allCarts));
+            loadCart();
+        }
+
+        function updateCartTotals(cart) {
+            let cartTotal = cart.reduce((total, item) => {
+                const price = parseFloat(item.price) || 0;
+                const quantity = parseInt(item.quantity, 10) || 1;
+                return total + (price * quantity);
+            }, 0);
+
+            document.getElementById('total').innerText = `Rs. ${cartTotal}`;
+            document.getElementById('subtotal').innerText = `Rs. ${cartTotal}`;
+        }
+
+        function checkout() {
+            const username = localStorage.getItem("loggedInUser");
+            if (!username) {
+                alert("Please log in first!");
+                window.location.href = "myaccount.html";
+                return;
+            }
+
+            const allCarts = JSON.parse(localStorage.getItem("allCarts")) || {};
+            const cart = allCarts[username] || [];
+
+            if (cart.length === 0) {
+                alert("Your cart is empty. Please add items before proceeding.");
+                return;
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            window.location.href = "checkout.html";
+        }
+
+        const hamburger = document.getElementById('hamburger-menu');
+        const menu = document.getElementById('main-menu');
+        hamburger.onclick = function() {
+            menu.classList.toggle('open');
+        };
+
+        window.onload = loadCart;
+    </script>
 </body>
 </html>

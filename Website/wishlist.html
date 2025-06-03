@@ -3,233 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Listing - TerraVision</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-        }
-
-        header {
-            background-color: #78fb7d;
-            padding: 27px 270px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-            color: #333;
-        }
-        nav {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .nav-right {
-            margin-left: auto; 
-            display: flex;
-            align-items: center; 
-        }
-        .menu {
-            list-style: none;
-            display: flex;
-            gap: 22px;
-            margin: 0;
-            padding: 0;
-        }
-        .menu li {
-            display: inline-block;
-        }
-        .menu a {
-            text-decoration: none;
-            color: #333;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .menu a:hover {
-            color: #0073e6; 
-        }
-
-        #google_element {
-            position: fixed;
-            margin-top: 0px;
-            right: 87px;
-            padding: 0px;
-            background: white;
-            border-radius: 1px; 
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
-            z-index: 1000; 
-        }
-        
-        .container {
-            width: 60%;
-            margin: 20px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        td img {
-            width: 80px;
-            height:70px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-        input[type="checkbox"] {
-            transform: scale(1.5);
-        }
-
-        button {
-            padding: 8px 12px;
-            background: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            border-radius: 5px;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-        .remove-btn {
-            background: #ff4c4c;
-        }
-        .remove-btn:hover {
-            background: #cc0000;
-        }
-        footer {
-            background-color: #b1aeae;
-            padding: 15px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: bold;
-        }
-    </style>
+    <title>Wishlist - TerraVision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="logo">TerraVision</div>
-        <nav>
-            <div class="nav-right">
-            <ul class="menu">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="aboutus.html">About Us</a></li>
-                <li><a href="croprecommendation.html">Crop Recommendation</a></li>
-                <li><a href="seedbank.html">Seed Bank</a></li>
-                <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                <li><a href="myaccount.html"><i class="fa fa-user"></i></a></li>
-                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-            </ul>
-            <div id="google_element"></div>
-            <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
-            <script>
-            function loadGoogleTranslate() {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en', 
-                    includedLanguages: 'en,ne', 
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-                }, 'google_element');
-            }
-            </script>
-        </nav>
+        <div class="header-container">
+            <a href="home.html" class="logo">TerraVision</a>
+            <div class="nav-container">
+                <div class="hamburger" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="menu" id="main-menu">
+                    <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="aboutus.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="croprecommendation.html"><i class="fas fa-seedling"></i> Crop Recommendation</a></li>
+                    <li><a href="seedbank.html"><i class="fas fa-store"></i> Seed Bank</a></li>
+                    <li><a href="wishlist.html"><i class="fas fa-heart"></i></a></li>
+                    <li><a href="myaccount.html"><i class="fas fa-user"></i></a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
+                </ul>
+                <div id="google_element"></div>
+            </div>
+        </div>
     </header>
 
-    <section id="wishlist-container" class="container">
-        <h2>Wishlist</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Select</th>
-                    <th>Product Image</th>
-                    <th>Product Name</th>
-                    <th>Unit Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="wishlist"></tbody>
-        </table>
+    <main class="section">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="text-center mb-5">
+                <h1><i class="fas fa-heart text-error"></i> My Wishlist</h1>
+                <p class="text-secondary">Save your favorite seeds for later</p>
+            </div>
 
-        <div class="actions">
-            <a href="seedbank.html">
-                <button>Back to Products</button>
-            </a>
-            <button onclick="addAllToCart()">Add Selected to Cart</button>
-            <button onclick="addEntireWishlistToCart()">Add All to Cart</button> 
+            <!-- Wishlist Content -->
+            <div class="wishlist-container">
+                <!-- Action Buttons -->
+                <div class="wishlist-actions mb-4">
+                    <div class="flex justify-between items-center">
+                        <a href="seedbank.html" class="btn btn-outline">
+                            <i class="fas fa-arrow-left"></i> Back to Seed Bank
+                        </a>
+                        <div class="action-buttons">
+                            <button onclick="addAllToCart()" class="btn btn-secondary mr-2">
+                                <i class="fas fa-cart-plus"></i> Add Selected to Cart
+                            </button>
+                            <button onclick="addEntireWishlistToCart()" class="btn btn-primary">
+                                <i class="fas fa-shopping-cart"></i> Add All to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wishlist Table -->
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th width="5%">
+                                    <input type="checkbox" id="select-all" onchange="toggleSelectAll()">
+                                </th>
+                                <th width="15%">Image</th>
+                                <th width="30%">Product Name</th>
+                                <th width="15%">Unit Price</th>
+                                <th width="20%">Stock Status</th>
+                                <th width="15%">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="wishlist-body">
+                            <!-- Wishlist items will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-wishlist" class="text-center p-5" style="display: none;">
+                    <div class="empty-state">
+                        <i class="fas fa-heart-broken" style="font-size: 4rem; color: var(--text-light); margin-bottom: 1rem;"></i>
+                        <h3>Your wishlist is empty</h3>
+                        <p class="text-secondary mb-4">Start adding products to your wishlist to see them here</p>
+                        <a href="seedbank.html" class="btn btn-primary">
+                            <i class="fas fa-store"></i> Browse Seed Bank
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TerraVision. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Google Translate Script -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+    <script>
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,ne',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_element');
+        }
+    </script>
 
     <script>
         function loadWishlist() {
             const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            const wishlistTable = document.getElementById('wishlist');
+            const wishlistBody = document.getElementById('wishlist-body');
+            const emptyState = document.getElementById('empty-wishlist');
+            const tableContainer = document.querySelector('.table-container');
 
-            wishlistTable.innerHTML = '';
+            wishlistBody.innerHTML = '';
 
             if (wishlist.length === 0) {
-                wishlistTable.innerHTML = '<tr><td colspan="5">Your wishlist is empty.</td></tr>';
+                tableContainer.style.display = 'none';
+                emptyState.style.display = 'block';
                 return;
             }
 
+            tableContainer.style.display = 'block';
+            emptyState.style.display = 'none';
+
             wishlist.forEach((item, index) => {
                 const row = document.createElement('tr');
+                row.className = 'animate-fade-in-up';
                 row.innerHTML = `
-                    <td><input type="checkbox" class="wishlist-checkbox" data-name="${item.name}"></td>
-                    <td><img src="${item.image}" alt="${item.name}"></td>
-                    <td>${item.name}</td>
-                    <td>Rs.${item.price}</td>
                     <td>
-                        <button onclick="addToCart('${item.name}', '${item.image}', '${item.price}')">Add to Cart</button>
-                        <button class="remove-btn" onclick="removeFromWishlist('${item.name}')">Remove</button>
+                        <input type="checkbox" class="wishlist-checkbox" data-name="${item.name}">
+                    </td>
+                    <td>
+                        <img src="${item.image}" alt="${item.name}" class="product-image-small">
+                    </td>
+                    <td>
+                        <div class="product-info-compact">
+                            <h4 class="product-title-small">${item.name}</h4>
+                            <span class="product-category">Premium Seeds</span>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="product-price">Rs. ${item.price}</span>
+                    </td>
+                    <td>
+                        <span class="stock-badge in-stock">
+                            <i class="fas fa-check-circle"></i> In Stock
+                        </span>
+                    </td>
+                    <td>
+                        <div class="action-buttons-compact">
+                            <button onclick="addToCart('${item.name}', '${item.image}', '${item.price}')" 
+                                    class="btn btn-sm btn-primary" title="Add to Cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                            <button onclick="removeFromWishlist('${item.name}')" 
+                                    class="btn btn-sm btn-outline-error" title="Remove">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
                     </td>
                 `;
-                wishlistTable.appendChild(row);
+                wishlistBody.appendChild(row);
+            });
+        }
+
+        function toggleSelectAll() {
+            const selectAll = document.getElementById('select-all');
+            const checkboxes = document.querySelectorAll('.wishlist-checkbox');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = selectAll.checked;
             });
         }
 
         function addToCart(name, image, price) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             const existingItem = cart.find(item => item.name === name);
+            
             if (existingItem) {
-                alert(`${name} is already in your cart.`);
+                showNotification(`${name} is already in your cart!`, 'warning');
                 return;
             }
 
-            cart.push({ name, image, price });
+            cart.push({ name, image, price, quantity: 1 });
             localStorage.setItem('cart', JSON.stringify(cart));
-            alert(`${name} added to cart!`);
+            showNotification(`${name} added to cart!`, 'success');
         }
 
         function removeFromWishlist(name) {
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            wishlist = wishlist.filter(item => item.name !== name);
-            localStorage.setItem('wishlist', JSON.stringify(wishlist));
-            loadWishlist();
+            if (confirm(`Remove ${name} from wishlist?`)) {
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                wishlist = wishlist.filter(item => item.name !== name);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                loadWishlist();
+                showNotification(`${name} removed from wishlist`, 'success');
+            }
         }
 
         function addAllToCart() {
@@ -238,10 +210,11 @@
 
             const selectedItems = document.querySelectorAll('.wishlist-checkbox:checked');
             if (selectedItems.length === 0) {
-                alert('No items selected.');
+                showNotification('Please select items to add to cart', 'warning');
                 return;
             }
 
+            let addedCount = 0;
             selectedItems.forEach(checkbox => {
                 const name = checkbox.getAttribute('data-name');
                 const item = wishlist.find(item => item.name === name);
@@ -249,45 +222,192 @@
                 if (item) {
                     const existingItem = cart.find(cartItem => cartItem.name === item.name);
                     if (!existingItem) {
-                        cart.push(item);
+                        cart.push({...item, quantity: 1});
+                        addedCount++;
                     }
                 }
             });
 
             localStorage.setItem('cart', JSON.stringify(cart));
-            alert('Selected items added to your cart!');
+            showNotification(`${addedCount} items added to cart!`, 'success');
         }
 
         function addEntireWishlistToCart() {
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    if (wishlist.length === 0) {
-        alert("Your wishlist is empty.");
-        return;
-    }
+            if (wishlist.length === 0) {
+                showNotification("Your wishlist is empty", 'warning');
+                return;
+            }
 
-    wishlist.forEach(item => {
-        const existingItem = cart.find(cartItem => cartItem.name === item.name);
-        if (!existingItem) {
-            cart.push(item);
+            let addedCount = 0;
+            wishlist.forEach(item => {
+                const existingItem = cart.find(cartItem => cartItem.name === item.name);
+                if (!existingItem) {
+                    cart.push({...item, quantity: 1});
+                    addedCount++;
+                }
+            });
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            showNotification(`${addedCount} items added to cart!`, 'success');
         }
-    });
 
-    localStorage.setItem('cart', JSON.stringify(cart));
-    alert("All items have been added to your cart!");
-}
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type} notification`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'times-circle'}"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
 
-
+        // Load wishlist when page loads
         window.onload = loadWishlist;
-    </script><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-    <footer>
-        <p>Copyright © 2025 TerraVision</p>
-    </footer>
+        const hamburger = document.getElementById('hamburger-menu');
+        const menu = document.getElementById('main-menu');
+        hamburger.onclick = function() {
+            menu.classList.toggle('open');
+        };
+    </script>
+
+    <style>
+        .wishlist-actions {
+            background: var(--bg-primary);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 2rem;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .mr-2 {
+            margin-right: 0.5rem;
+        }
+
+        .product-image-small {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .product-info-compact h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        .product-category {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .product-title-small {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .stock-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .stock-badge.in-stock {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success-color);
+        }
+
+        .action-buttons-compact {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-sm {
+            padding: 0.5rem;
+            font-size: 0.875rem;
+            min-width: auto;
+        }
+
+        .btn-outline-error {
+            background: transparent;
+            color: var(--error-color);
+            border: 1px solid var(--error-color);
+        }
+
+        .btn-outline-error:hover {
+            background: var(--error-color);
+            color: white;
+        }
+
+        .text-error {
+            color: var(--error-color);
+        }
+
+        .empty-state {
+            padding: 3rem;
+        }
+
+        .notification {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            min-width: 300px;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .wishlist-actions .flex {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .action-buttons {
+                display: flex;
+                gap: 0.5rem;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+        }
+    </style>
 </body>
 </html>
-
-
-
-

@@ -3,244 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Listing - TerraVision</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
-    <link rel="stylesheet" href="style.css"> 
-    <style>
-        /* Form styles */
-        .form-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 100px;
-            background-color: rgb(165, 211, 241);
-            padding: 50px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            margin: 50px auto;
-        }
-
-        .form-container h2 {
-            margin-bottom: 30px;
-            font-size: 24px;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-
-        .input-group input {
-            width: 350px;
-            padding: 10px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            outline: none;
-        }
-
-        .input-group input:focus {
-            border-color: #007bff;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
-        }
-
-        p {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-    </style>
+    <title>My Account - TerraVision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </head>
 <body>
     <header>
-        <div class="logo">TerraVision</div>
-        <div class="nav-right"></div>
-        <ul class="menu">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="aboutus.html">About Us</a></li>
-            <li><a href="croprecommendation.html">Crop Recommendation</a></li>
-            <li><a href="seedbank.html">Seed Bank</a></li>
-            <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-            <li><a href="myaccount.html"><i class="fa fa-user"></i></a></li>
-            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-        </ul>
-        <div id="google_element"></div>
-            <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
-            <script>
-            function loadGoogleTranslate() {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en', 
-                    includedLanguages: 'en,ne', 
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-                }, 'google_element');
-            }
-            </script>
-        
+        <div class="header-container">
+            <a href="home.html" class="logo">TerraVision</a>
+            <div class="nav-container">
+                <div class="hamburger" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="menu" id="main-menu">
+                    <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="aboutus.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="croprecommendation.html"><i class="fas fa-seedling"></i> Crop Recommendation</a></li>
+                    <li><a href="seedbank.html"><i class="fas fa-store"></i> Seed Bank</a></li>
+                    <li><a href="wishlist.html"><i class="fas fa-heart"></i></a></li>
+                    <li><a href="myaccount.html"><i class="fas fa-user"></i></a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
+                </ul>
+                <div id="google_element"></div>
+            </div>
+        </div>
     </header>
 
-    <body>
-        
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1><i class="fas fa-user-circle" style="color: var(--primary-color);"></i> My Account</h1>
+                <p>Sign in to access your personalized farming dashboard</p>
+            </div>
 
-        <!-- Signup Form (Hidden initially) -->
-<div class="form-container" id="signup-form" style="display: none;">
-    <h2>Signup</h2>
-    <form id="signupForm" onsubmit="return handleSignup(event)">
-        <div class="input-group">
-            <label for="signup-username">Username</label>
-            <input type="text" id="signup-username" name="username" placeholder="Enter your username" required>
+            <!-- Login Form -->
+            <div class="form-container" id="login-form">
+                <div class="text-center mb-4">
+                    <h2>Welcome Back</h2>
+                    <p style="color: var(--text-secondary);">Sign in to your TerraVision account</p>
+                </div>
+                <form id="loginForm" onsubmit="return handleLogin(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="login-email">
+                            <i class="fas fa-envelope"></i> Email Address
+                        </label>
+                        <input type="email" id="login-email" name="email" class="form-input" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="login-password">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <input type="password" id="login-password" name="password" class="form-input" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </button>
+                    <div class="text-center mt-3">
+                        <p>Don't have an account? <a href="#" onclick="showSignupForm()" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Create Account</a></p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="form-container" id="signup-form" style="display: none;">
+                <div class="text-center mb-4">
+                    <h2>Join TerraVision</h2>
+                    <p style="color: var(--text-secondary);">Create your account to get started</p>
+                </div>
+                <form id="signupForm" onsubmit="return handleSignup(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="signup-username">
+                            <i class="fas fa-user"></i> Full Name
+                        </label>
+                        <input type="text" id="signup-username" name="username" class="form-input" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="signup-email">
+                            <i class="fas fa-envelope"></i> Email Address
+                        </label>
+                        <input type="email" id="signup-email" name="email" class="form-input" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="signup-password">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <input type="password" id="signup-password" name="password" class="form-input" placeholder="Create a strong password" required>
+                    </div>
+                    <button type="submit" class="btn btn-secondary" style="width: 100%;">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="#" onclick="showLoginForm()" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Sign In</a></p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Benefits Section -->
+            <div class="mt-5">
+                <div class="text-center mb-4">
+                    <h3>Why Create an Account?</h3>
+                </div>
+                <div class="grid grid-3">
+                    <div class="feature-card">
+                        <span class="feature-icon">📊</span>
+                        <h4>Track Your Progress</h4>
+                        <p>Monitor your farming analytics and crop recommendations over time.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🛒</span>
+                        <h4>Save Your Cart</h4>
+                        <p>Keep your selected seeds and plants saved across sessions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">💝</span>
+                        <h4>Wishlist Items</h4>
+                        <p>Save products for later and get notified about price drops.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="input-group">
-            <label for="signup-email">Email</label>
-            <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TerraVision. Empowering farmers with smart technology.</p>
         </div>
-        <div class="input-group">
-            <label for="signup-password">Password</label>
-            <input type="password" id="signup-password" name="password" placeholder="Create a password" required>
-        </div>
-        <button type="submit" class="btn">Signup</button>
-        <p>Already have an account? <a href="#" onclick="showLoginForm()">Login</a></p>
-    </form>
-</div>
+    </footer>
 
-<!-- Login Form (Shown by default) -->
-<div class="form-container" id="login-form">
-    <h2>Login</h2>
-    <form id="loginForm" onsubmit="return handleLogin(event)">
-        <div class="input-group">
-            <label for="login-email">Email</label>
-            <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
-        </div>
-        <div class="input-group">
-            <label for="login-password">Password</label>
-            <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
-        </div>
-        <button type="submit" class="btn">Login</button>
-        <p>Don't have an account? <a href="#" onclick="showSignupForm()">Signup</a></p>
-    </form>
-</div>
-    
-        <script>function showLoginForm() {
-    document.getElementById('login-form').style.display = 'block';
-    document.getElementById('signup-form').style.display = 'none';
-}
+    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+    <script>
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en', 
+                includedLanguages: 'en,ne', 
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_element');
+        }
 
-function showSignupForm() {
-    document.getElementById('signup-form').style.display = 'block';
-    document.getElementById('login-form').style.display = 'none';
-}
+        function showLoginForm() {
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('signup-form').style.display = 'none';
+        }
 
-function handleSignup(event) {
-    event.preventDefault(); // Prevent form submission
+        function showSignupForm() {
+            document.getElementById('signup-form').style.display = 'block';
+            document.getElementById('login-form').style.display = 'none';
+        }
 
-    // Get form data
-    const username = document.getElementById('signup-username').value;
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
+        function handleSignup(event) {
+            event.preventDefault();
 
-    // Store the data in localStorage
-    const user = {
-        username: username,
-        email: email,
-        password: password
-    };
-    localStorage.setItem('user', JSON.stringify(user));
+            const username = document.getElementById('signup-username').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
 
-    // Show SweetAlert2 success message
-    Swal.fire({
-        title: "Signup Successful!",
-        text: "You can now log in.",
-        icon: "success",
-        confirmButtonText: "Go to Login",
-        
-    }).then(() => {
-        showLoginForm(); // Show login form after the alert
-    });
-}
+            const user = {
+                username: username,
+                email: email,
+                password: password
+            };
+            localStorage.setItem('user', JSON.stringify(user));
 
-function handleLogin(event) {
-    event.preventDefault(); // Prevent form submission
+            Swal.fire({
+                title: "Account Created Successfully!",
+                text: "Welcome to TerraVision! You can now sign in.",
+                icon: "success",
+                confirmButtonText: "Sign In Now",
+                confirmButtonColor: "#2563eb"
+            }).then(() => {
+                showLoginForm();
+            });
+        }
 
-    // Retrieve user data from localStorage
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+        function handleLogin(event) {
+            event.preventDefault();
 
-    // Check if the email and password match
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
+            const storedUser = JSON.parse(localStorage.getItem('user'));
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
 
-    if (storedUser && storedUser.email === email && storedUser.password === password) {
-        // Show a beautiful success popup
-        Swal.fire({
-            title: `Welcome, ${storedUser.username}!`,
-            text: "You have successfully logged in.",
-            icon: "success",
-            confirmButtonText: "Go to Homepage",
-            timer: 2000, // Auto-close after 2 seconds
-            timerProgressBar: true,
-            showConfirmButton: false
-        });
+            if (storedUser && storedUser.email === email && storedUser.password === password) {
+                localStorage.setItem('loggedInUser', storedUser.username);
+                
+                Swal.fire({
+                    title: `Welcome back, ${storedUser.username}!`,
+                    text: "You have successfully signed in.",
+                    icon: "success",
+                    timer: 2000,
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    confirmButtonColor: "#2563eb"
+                });
 
-        // Redirect to homepage after 2 seconds
-        setTimeout(() => {
-            window.location.href = "home.html";
-        }, 2000);
-    } else {
-        // Show error popup
-        Swal.fire({
-            title: "Login Failed!",
-            text: "Invalid email or password. Please try again.",
-            icon: "error",
-            confirmButtonText: "Try Again"
-        });
-    }
+                setTimeout(() => {
+                    window.location.href = "home.html";
+                }, 2000);
+            } else {
+                Swal.fire({
+                    title: "Sign In Failed",
+                    text: "Invalid email or password. Please try again.",
+                    icon: "error",
+                    confirmButtonText: "Try Again",
+                    confirmButtonColor: "#ef4444"
+                });
+            }
+        }
 
-    // On logout, clear user data from localStorage
-function logout() {
-    localStorage.removeItem('user');  // Remove the user from localStorage
-    Swal.fire({
-        title: "Logged Out",
-        text: "You have been logged out successfully.",
-        icon: "success",
-        confirmButtonText: "OK"
-    }).then(() => {
-        window.location.href = "home.html";  // Redirect to home page
-    });
-}
+        function logout() {
+            localStorage.removeItem('loggedInUser');
+            Swal.fire({
+                title: "Signed Out",
+                text: "You have been signed out successfully.",
+                icon: "success",
+                confirmButtonText: "OK",
+                confirmButtonColor: "#2563eb"
+            }).then(() => {
+                window.location.href = "home.html";
+            });
+        }
 
-}
-</script>
-    </body>
+        const hamburger = document.getElementById('hamburger-menu');
+        const menu = document.getElementById('main-menu');
+        hamburger.onclick = function() {
+            menu.classList.toggle('open');
+        };
+    </script>
+</body>
 </html>

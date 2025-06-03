@@ -3,136 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Listing - TerraVision</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
-    <link rel="stylesheet" href="style.css"> 
-    <style>
-        .crop-container {
-            text-align: center;
-            max-width: 700px;
-            margin: auto;
-            padding: 45px;
-            border-radius: 12px;
-            background: #ffffff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        h2 {
-            color: #0073e6;
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        label {
-            font-size: 16px;
-            font-weight: bold;
-            display: block;
-            margin-top: 10px;
-            text-align: left;
-        }
-        .crop-container input {
-            width: 90%;
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            margin-top: 5px;
-        }
-        .crop-container button {
-            background: #2fc251;
-            color: white;
-            font-size: 22px;
-            font-weight: bold;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
-            transition: 0.3s ease-in-out;
-        }
-        .crop-container button:hover {
-            background: #218838;
-        }
-
-        .result-box {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            color: rgb(105, 218, 255);
-            display: none;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 0.5s, transform 0.3s;
-        }
-        .result-box.visible {
-            display: block;
-            opacity: 1;
-            transform: scale(1);
-        }
-        .result-crop {
-            background: #28a745;
-        }
-        .result-error {
-            background: #dc3545;
-        }
-
-        .accuracy {
-            font-size: 16px;
-            font-weight: normal;
-            margin-top: 5px;
-        }
-    </style>
+    <title>Crop Recommendation - TerraVision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <header>
-        <div class="logo">TerraVision</div>
-        <nav>
-            <div class="nav-right">
-                <ul class="menu">
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="aboutus.html">About Us</a></li>
-                    <li><a href="croprecommendation.html">Crop Recommendation</a></li>
-                    <li><a href="seedbank.html">Seed Bank</a></li>
-                    <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                    <li><a href="myaccount.html"><i class="fa fa-user"></i></a></li>
-                    <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
+        <div class="header-container">
+            <a href="home.html" class="logo">TerraVision</a>
+            <div class="nav-container">
+                <div class="hamburger" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="menu" id="main-menu">
+                    <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="aboutus.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="croprecommendation.html"><i class="fas fa-seedling"></i> Crop Recommendation</a></li>
+                    <li><a href="seedbank.html"><i class="fas fa-store"></i> Seed Bank</a></li>
+                    <li><a href="wishlist.html"><i class="fas fa-heart"></i></a></li>
+                    <li><a href="myaccount.html"><i class="fas fa-user"></i></a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
                 </ul>
+                <div id="google_element"></div>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <!-- Crop Recommendation Form (Initially Hidden) -->
-    <div id="cropFormContainer" class="crop-container">
-        <h2>🌱 Crop Recommendation System</h2>
-        <form id="cropForm">
-            <!-- Crop input fields here -->
-            <label for="N">Nitrogen (N):</label>
-            <input type="number" id="N" name="N" required>
-            <label for="P">Phosphorus (P):</label>
-            <input type="number" id="P" name="P" required>
-            <label for="K">Potassium (K):</label>
-            <input type="number" id="K" name="K" required>
-            <label for="temperature">Temperature (°C):</label>
-            <input type="number" id="temperature" name="temperature" step="0.1" required>
-            <label for="humidity">Humidity (%):</label>
-            <input type="number" id="humidity" name="humidity" step="0.1" required>
-            <label for="ph">pH Level:</label>
-            <input type="number" id="ph" name="ph" step="0.1" required>
-            <label for="rainfall">Rainfall (mm):</label>
-            <input type="number" id="rainfall" name="rainfall" step="0.1" required>
-            <button type="button" id="submitCropForm">✅ Predict Crop</button>
-        </form>
-        <div id="result" class="result-box"></div>
-    </div>
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1><i class="fas fa-seedling" style="color: var(--secondary-color);"></i> AI Crop Recommendation</h1>
+                <p>Get personalized crop suggestions based on your soil and climate conditions</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h2>Soil & Climate Analysis</h2>
+                        <p>Enter your farming conditions for AI-powered recommendations</p>
+                    </div>
+                    <div class="card-body">
+                        <form id="cropForm">
+                            <div class="grid grid-2">
+                                <div class="form-group">
+                                    <label class="form-label" for="N">
+                                        <i class="fas fa-flask"></i> Nitrogen (N) Level
+                                    </label>
+                                    <input type="number" id="N" name="N" class="form-input" placeholder="Enter nitrogen level" required>
+                                    <small style="color: var(--text-light);">Typical range: 0-140 kg/ha</small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="P">
+                                        <i class="fas fa-atom"></i> Phosphorus (P) Level
+                                    </label>
+                                    <input type="number" id="P" name="P" class="form-input" placeholder="Enter phosphorus level" required>
+                                    <small style="color: var(--text-light);">Typical range: 5-145 kg/ha</small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="K">
+                                        <i class="fas fa-leaf"></i> Potassium (K) Level
+                                    </label>
+                                    <input type="number" id="K" name="K" class="form-input" placeholder="Enter potassium level" required>
+                                    <small style="color: var(--text-light);">Typical range: 5-205 kg/ha</small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="temperature">
+                                        <i class="fas fa-thermometer-half"></i> Temperature (°C)
+                                    </label>
+                                    <input type="number" id="temperature" name="temperature" step="0.1" class="form-input" placeholder="Average temperature" required>
+                                    <small style="color: var(--text-light);">Annual average temperature</small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="humidity">
+                                        <i class="fas fa-tint"></i> Humidity (%)
+                                    </label>
+                                    <input type="number" id="humidity" name="humidity" step="0.1" class="form-input" placeholder="Relative humidity" required>
+                                    <small style="color: var(--text-light);">Average relative humidity</small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="ph">
+                                        <i class="fas fa-vial"></i> Soil pH Level
+                                    </label>
+                                    <input type="number" id="ph" name="ph" step="0.1" class="form-input" placeholder="Soil pH value" required>
+                                    <small style="color: var(--text-light);">Range: 3.5-9.9 (7 is neutral)</small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="rainfall">
+                                        <i class="fas fa-cloud-rain"></i> Annual Rainfall (mm)
+                                    </label>
+                                    <input type="number" id="rainfall" name="rainfall" step="0.1" class="form-input" placeholder="Annual rainfall" required>
+                                    <small style="color: var(--text-light);">Total annual precipitation</small>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button type="button" id="submitCropForm" class="btn btn-primary btn-large">
+                                    <i class="fas fa-brain"></i> Analyze & Recommend
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div id="result" class="card mt-4" style="display: none;">
+                    <div class="card-body text-center">
+                        <div id="resultContent"></div>
+                    </div>
+                </div>
+
+                <!-- Tips Section -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h3><i class="fas fa-lightbulb"></i> Farming Tips</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="grid grid-2">
+                            <div>
+                                <h4>🌡️ Temperature Guidelines</h4>
+                                <ul style="color: var(--text-secondary); line-height: 1.8;">
+                                    <li>Cool crops: 15-20°C (lettuce, peas)</li>
+                                    <li>Warm crops: 20-30°C (tomatoes, peppers)</li>
+                                    <li>Hot crops: 25-35°C (melons, okra)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>💧 pH Level Guide</h4>
+                                <ul style="color: var(--text-secondary); line-height: 1.8;">
+                                    <li>Acidic (6.0-6.8): Blueberries, potatoes</li>
+                                    <li>Neutral (6.8-7.2): Most vegetables</li>
+                                    <li>Alkaline (7.2-8.0): Asparagus, beets</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <p>Copyright © 2025 TerraVision</p>
+        <div class="container">
+            <p>&copy; 2025 TerraVision. Empowering farmers with smart technology.</p>
+        </div>
     </footer>
 
+    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
     <script>
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en', 
+                includedLanguages: 'en,ne', 
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_element');
+        }
+
+        document.getElementById('submitCropForm').addEventListener('click', function() {
+            const button = this;
+            const originalText = button.innerHTML;
+            
+            // Show loading state
+            button.innerHTML = '<span class="spinner"></span> Analyzing...';
+            button.disabled = true;
 
             var formData = {
                 N: document.getElementById("N").value,
@@ -145,8 +181,10 @@
             };
 
             var resultDiv = document.getElementById("result");
-            resultDiv.className = "result-box visible";
-            resultDiv.innerHTML = "🔄 Loading...";
+            var resultContent = document.getElementById("resultContent");
+            
+            resultDiv.style.display = "block";
+            resultContent.innerHTML = '<div class="spinner"></div> Analyzing your soil and climate data...';
 
             fetch("https://crop-recommendation-api-5kmz.onrender.com/predict", {
                 method: "POST",
@@ -158,17 +196,49 @@
             .then(response => response.json())
             .then(data => {
                 if (data.prediction) {
-                    resultDiv.className = "result-box result-crop visible";
-                    resultDiv.innerHTML = "🌾 Recommended Crop: " + data.prediction;
+                    resultContent.innerHTML = `
+                        <div style="padding: 2rem;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">🌾</div>
+                            <h2 style="color: var(--secondary-color); margin-bottom: 1rem;">Recommended Crop</h2>
+                            <h3 style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem;">${data.prediction}</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Based on your soil and climate conditions, this crop has the highest probability of success.</p>
+                            <a href="seedbank.html" class="btn btn-secondary">
+                                <i class="fas fa-store"></i> Find ${data.prediction} Seeds
+                            </a>
+                        </div>
+                    `;
                 } else {
-                    resultDiv.className = "result-box result-error visible";
-                    resultDiv.innerHTML = "❌ Error: Could not get prediction.";
+                    resultContent.innerHTML = `
+                        <div style="padding: 2rem;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">❌</div>
+                            <h3 style="color: var(--error-color);">Analysis Failed</h3>
+                            <p>Unable to generate recommendation. Please check your inputs and try again.</p>
+                        </div>
+                    `;
                 }
             })
             .catch(error => {
-                resultDiv.className = "result-box result-error visible";
-                resultDiv.innerHTML = "❌ API Error: " + error.message;
+                resultContent.innerHTML = `
+                    <div style="padding: 2rem;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">⚠️</div>
+                        <h3 style="color: var(--warning-color);">Service Unavailable</h3>
+                        <p>Our recommendation service is temporarily unavailable. Please try again later.</p>
+                        <small style="color: var(--text-light);">Error: ${error.message}</small>
+                    </div>
+                `;
+            })
+            .finally(() => {
+                // Reset button state
+                button.innerHTML = originalText;
+                button.disabled = false;
             });
+        });
+
+        const hamburger = document.getElementById('hamburger-menu');
+        const menu = document.getElementById('main-menu');
+        hamburger.onclick = function() {
+            menu.classList.toggle('open');
+        };
     </script>
 </body>
 </html>

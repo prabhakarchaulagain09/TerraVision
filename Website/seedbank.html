@@ -3,219 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Listing - TerraVision</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
-    <link rel="stylesheet" href="style.css"> 
-    <style>
-        .container {
-            width: 80%;
-            max-width: 1200px; 
-            margin: 50px auto;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-        .item {
-            background: white;
-            width: 250px; /* Kept product size same as before */
-            padding: 15px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        .item img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-        .item h3 {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-        .item p {
-            font-size: 16px;
-            color: #555;
-        }
-        .item button {
-            background-color: #0044cc;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .item button:hover {
-            background-color: #0033aa;
-        }
-        .wishlist-icon {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background-color: rgb(239, 79, 79);
-            border-radius: 50%;
-            padding: 3px;
-            cursor: pointer;
-            transition: 0.2s ease;
-            margin-left: 50px;
-        }
-        .wishlist-icon i {
-            font-size: 13px;
-            color: white;
-        }
-        .wishlist-icon:hover {
-            background-color: red;
-            transform: scale(1.1);
-        }
-    </style>
+    <title>Seed Bank - TerraVision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <header>
-        <div class="logo">TerraVision</div>
-        <nav>
-            <div class="nav-right">
-            <ul class="menu">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="aboutus.html">About Us</a></li>
-                <li><a href="croprecommendation.html">Crop Recommendation</a></li>
-                <li><a href="seedbank.html">Seed Bank</a></li>
-                <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                <li><a href="myaccount.html"><i class="fa fa-user"></i></a></li>
-                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-            </ul>
-            <div id="google_element"></div>
-            <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
-            <script>
-            function loadGoogleTranslate() {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en', 
-                    includedLanguages: 'en,ne', 
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-                }, 'google_element');
-            }
-            </script>
-        </nav>
+        <div class="header-container">
+            <a href="home.html" class="logo">TerraVision</a>
+            <div class="nav-container">
+                <div class="hamburger" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="menu" id="main-menu">
+                    <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="aboutus.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="croprecommendation.html"><i class="fas fa-seedling"></i> Crop Recommendation</a></li>
+                    <li><a href="seedbank.html"><i class="fas fa-store"></i> Seed Bank</a></li>
+                    <li><a href="wishlist.html"><i class="fas fa-heart"></i></a></li>
+                    <li><a href="myaccount.html"><i class="fas fa-user"></i></a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
+                </ul>
+                <div id="google_element"></div>
+            </div>
+        </div>
     </header>
 
-    <section class="container">
-        <div class="item">
-            <img src="C:\Users\Acer\Music\Apple .png" alt="Apple Seeds">
-            <h3>Apple Seeds Pack</h3>
-            <p>Rs.200</p>
-            <button onclick="addToCart('Apple Seeds',200,'images/Apple .png')">Add to Cart</button>
-            <div class="wishlist-icon" onclick="addToWishlist('Apple Seeds', 200, 'images/Apple .png')">
-                <i class="fas fa-heart"></i>
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1><i class="fas fa-store" style="color: var(--secondary-color);"></i> Premium Seed Bank</h1>
+                <p>Discover high-quality seeds and plants from trusted suppliers across Nepal</p>
             </div>
-        </div>
-        <div class="item">
-            <img src="C:\Users\Acer\Music\Kidney Beans .JPG" alt="Beans">
-            <h3>Beans</h3>
-            <p>Rs.100</p>
-            <button onclick="addToCart('Beans',100,'images/Kidney Beans .JPG')">Add to Cart</button>
-            <div class="wishlist-icon" onclick="addToWishlist('Beans', 100, 'images/Kidney Beans .JPG')">
-                <i class="fas fa-heart"></i>
+
+            <!-- Filter Section -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="grid grid-4">
+                        <div class="form-group">
+                            <label class="form-label">Category</label>
+                            <select class="form-input" id="categoryFilter">
+                                <option value="">All Categories</option>
+                                <option value="seeds">Seeds</option>
+                                <option value="plants">Plants</option>
+                                <option value="fruits">Fruits</option>
+                                <option value="vegetables">Vegetables</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Price Range</label>
+                            <select class="form-input" id="priceFilter">
+                                <option value="">All Prices</option>
+                                <option value="0-100">Rs. 0 - 100</option>
+                                <option value="100-200">Rs. 100 - 200</option>
+                                <option value="200-300">Rs. 200 - 300</option>
+                                <option value="300+">Rs. 300+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Search</label>
+                            <input type="text" class="form-input" id="searchInput" placeholder="Search products...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">&nbsp;</label>
+                            <button class="btn btn-primary" style="width: 100%;" onclick="filterProducts()">
+                                <i class="fas fa-search"></i> Filter
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <img src="C:\Users\Acer\Music\maize.jpg" alt="Maize">
-            <h3>Maize</h3>
-            <p>Rs.160</p>
-            <button onclick="addToCart('Maize',160,'images/maize.jpg')">Add to Cart</button>
-            <div class="wishlist-icon" onclick="addToWishlist('Maize', 160, 'images/maize.jpg')">
-                <i class="fas fa-heart"></i>
+
+            <!-- Products Grid -->
+            <div class="grid grid-4" id="productsGrid">
+                <div class="product-card" data-category="fruits" data-price="200">
+                    <button class="wishlist-btn" onclick="addToWishlist('Apple Seeds', 200, '/placeholder.svg?height=200&width=300')">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                    <img src="images/Apple .png" alt="Apple Seeds" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Apple Seeds Pack</h3>
+                        <div class="product-price">Rs. 200</div>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Premium quality apple seeds for high-yield cultivation. Perfect for temperate climates.</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Apple Seeds', 200, '/placeholder.svg?height=200&width=300')">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="vegetables" data-price="100">
+                    <button class="wishlist-btn" onclick="addToWishlist('Kidney Beans', 100, '/placeholder.svg?height=200&width=300')">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                    <img src="images/Kidney Beans .JPG" alt="Kidney Beans" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Kidney Beans</h3>
+                        <div class="product-price">Rs. 100</div>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Nutritious kidney beans with excellent protein content. Disease-resistant variety.</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Kidney Beans', 100, '/placeholder.svg?height=200&width=300')">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="vegetables" data-price="160">
+                    <button class="wishlist-btn" onclick="addToWishlist('Maize', 160, '/placeholder.svg?height=200&width=300')">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                    <img src="images/maize.jpg" alt="Maize" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Hybrid Maize</h3>
+                        <div class="product-price">Rs. 160</div>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">High-yield hybrid maize variety. Suitable for diverse soil conditions.</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Maize', 160, '/placeholder.svg?height=200&width=300')">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="plants" data-price="330">
+                    <button class="wishlist-btn" onclick="addToWishlist('Mango Plant', 330, '/placeholder.svg?height=200&width=300')">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                    <img src="images/Mango.png" alt="Mango Plant" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Mango Plant</h3>
+                        <div class="product-price">Rs. 330</div>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Grafted mango sapling with early fruiting characteristics. Premium variety.</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Mango Plant', 330, '/placeholder.svg?height=200&width=300')">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="vegetables" data-price="150">
+                    <button class="wishlist-btn" onclick="addToWishlist('Pigeonpeas', 150, '/placeholder.svg?height=200&width=300')">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                    <img src="images/pigeonpeas.JPG" alt="Pigeonpeas" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Pigeonpeas</h3>
+                        <div class="product-price">Rs. 150</div>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Drought-resistant pigeonpeas perfect for sustainable farming practices.</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Pigeonpeas', 150, '/placeholder.svg?height=200&width=300')">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="plants" data-price="100">
+                    <button class="wishlist-btn" onclick="addToWishlist('Coconut Plant', 100, '/placeholder.svg?height=200&width=300')">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                    <img src="images/Coconut.png" alt="Coconut Plant" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Coconut Plant</h3>
+                        <div class="product-price">Rs. 100</div>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Young coconut plant suitable for tropical and subtropical regions.</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Coconut Plant', 100, '/placeholder.svg?height=200&width=300')">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="fruits" data-price="280">
+                    <button class="wishlist-btn" onclick="addToWishlist('Watermelon Seeds', 280, '/placeholder.svg?height=200&width=300')">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                    <img src="images/Watermelon .jpg" alt="Watermelon Seeds" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Watermelon Seeds</h3>
+                        <div class="product-price">Rs. 280</div>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Sweet, large watermelon variety with excellent market value.</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Watermelon Seeds', 280, '/placeholder.svg?height=200&width=300')">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="fruits" data-price="150">
+                    <button class="wishlist-btn" onclick="addToWishlist('Papaya Seeds', 150, '/placeholder.svg?height=200&width=300')">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                    <img src="images/PAPAYA-SEEDS.jpeg" alt="Papaya Seeds" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Papaya Seeds</h3>
+                        <div class="product-price">Rs. 150</div>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Fast-growing papaya variety with high nutritional value.</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="addToCart('Papaya Seeds', 150, '/placeholder.svg?height=200&width=300')">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <img src="c:\Users\Acer\Music\Mango.png" alt="Mango Plant">
-            <h3>Mango Plant</h3>
-            <p>Rs.330</p>
-            <button onclick="addToCart('Mango Plant', 330, 'images/Mango.png')">Add to Cart</button>
-            <div class="wishlist-icon" onclick="addToWishlist('Mango Plant', 330, 'images/Mango.png')">
-                <i class="fas fa-heart"></i>
-            </div>
-        </div>
-        <div class="item">
-            <img src="C:\Users\Acer\Music\pigeonpeas.JPG" alt="Pigeonpeas">
-            <h3>Pigeonpeas</h3>
-            <p>Rs.150</p>
-            <button onclick="addToCart('Pigeonpeas',150,'images/pigeonpeas.JPG')">Add to Cart</button>
-            <div class="wishlist-icon" onclick="addToWishlist('Pigeonpeas', 150, 'images/pigeonpeas.JPG')">
-                <i class="fas fa-heart"></i>
-            </div>
-        </div>
-        <div class="item">
-            <img src="C:\Users\Acer\Music\Coconut.png" alt="Coconut Plant">
-            <h3>Coconut Plant</h3>
-            <p>Rs.100</p>
-            <button onclick="addToCart('Coconut Plant',100,'images/Coconut.png')">Add to Cart</button>
-            <div class="wishlist-icon" onclick="addToWishlist('Coconut Plant', 100, 'images/Coconut.png')">
-                <i class="fas fa-heart"></i>
-            </div>
-        </div>
-        <div class="item">
-            <img src="C:\Users\Acer\Music\Watermelon .jpg" alt="Watermelon Seed">
-            <h3>Watermelon Seed</h3>
-            <p>Rs.280</p>
-            <button onclick="addToCart('Watermelon Seed',280,'images/Watermelon .jpg')">Add to Cart</button>
-            <div class="wishlist-icon" onclick="addToWishlist('Watermelon Seed', 280, 'images/Watermelon .jpg')">
-                <i class="fas fa-heart"></i>
-            </div>
-        </div>
-        <div class="item">
-            <img src="C:\Users\Acer\Music\PAPAYA-SEEDS.jpeg" alt="Papaya Seed">
-            <h3>Papaya Seed</h3>
-            <p>Rs.150</p>
-            <button onclick="addToCart('Papaya Seed',150,'images/PAPAYA-SEEDS.jpeg')">Add to Cart</button>
-            <div class="wishlist-icon" onclick="addToWishlist('Papaya Seed', 150, 'images/PAPAYA-SEEDS.jpeg')">
-                <i class="fas fa-heart"></i>
+
+            <!-- Success Message -->
+            <div id="successMessage" class="alert alert-success" style="display: none; position: fixed; top: 100px; right: 20px; z-index: 1000; max-width: 300px;">
+                <i class="fas fa-check-circle"></i> <span id="successText"></span>
             </div>
         </div>
     </section>
 
-    <script>
-        
-        // Add to wishlist 
-        function addToWishlist(name, price, image) {
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TerraVision. Empowering farmers with smart technology.</p>
+        </div>
+    </footer>
 
+    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+    <script>
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en', 
+                includedLanguages: 'en,ne', 
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_element');
+        }
+
+        function showSuccessMessage(message) {
+            const successDiv = document.getElementById('successMessage');
+            const successText = document.getElementById('successText');
+            successText.textContent = message;
+            successDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                successDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        function addToWishlist(name, price, image) {
             let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
-            // Check if product already exists
             if (wishlist.some(product => product.name === name)) {
-                alert(`${name} is already in your wishlist!`);
+                showSuccessMessage(`${name} is already in your wishlist!`);
                 return;
             }
 
             wishlist.push({ name, price, image });
-
-            // Save updated wishlist
             localStorage.setItem('wishlist', JSON.stringify(wishlist));
-            alert(`${name} added to wishlist!`);
+            showSuccessMessage(`${name} added to wishlist!`);
         }
 
-        // Add to cart
         function addToCart(name, price, image) {
-
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            // Check if product already exists in cart
             if (cart.some(product => product.name === name)) {
-                alert(`${name} is already in your cart!`);
+                showSuccessMessage(`${name} is already in your cart!`);
                 return;
             }
 
-            cart.push({ name, price, image });
-
-            // Save updated cart
+            cart.push({ name, price, image, quantity: 1 });
             localStorage.setItem('cart', JSON.stringify(cart));
-            alert(`${name} added to cart!`);
+            showSuccessMessage(`${name} added to cart!`);
         }
+
+        function filterProducts() {
+            const category = document.getElementById('categoryFilter').value;
+            const priceRange = document.getElementById('priceFilter').value;
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const products = document.querySelectorAll('.product-card');
+
+            products.forEach(product => {
+                let show = true;
+
+                // Category filter
+                if (category && !product.dataset.category.includes(category)) {
+                    show = false;
+                }
+
+                // Price filter
+                if (priceRange) {
+                    const price = parseInt(product.dataset.price);
+                    if (priceRange === '0-100' && (price < 0 || price > 100)) show = false;
+                    if (priceRange === '100-200' && (price < 100 || price > 200)) show = false;
+                    if (priceRange === '200-300' && (price < 200 || price > 300)) show = false;
+                    if (priceRange === '300+' && price < 300) show = false;
+                }
+
+                // Search filter
+                if (searchTerm) {
+                    const title = product.querySelector('.product-title').textContent.toLowerCase();
+                    if (!title.includes(searchTerm)) show = false;
+                }
+
+                product.style.display = show ? 'block' : 'none';
+            });
+        }
+
+        // Real-time search
+        document.getElementById('searchInput').addEventListener('input', filterProducts);
+
+        const hamburger = document.getElementById('hamburger-menu');
+        const menu = document.getElementById('main-menu');
+        hamburger.onclick = function() {
+            menu.classList.toggle('open');
+        };
     </script>
-    <footer>
-        <p>Copyright © 2025 TerraVision</p>
-    </footer>
 </body>
 </html>
-

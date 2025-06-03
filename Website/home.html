@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Listing - TerraVision</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
-    <link rel="stylesheet" href="style.css"> 
+    <title>TerraVision - Smart Farming Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
         .about-img {
             display: block;
@@ -105,66 +108,207 @@
 
 <body>
     <header>
-        <div class="logo">TerraVision</div>
-        <nav>
-            <div class="nav-right">
-            <ul class="menu">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="aboutus.html">About Us</a></li>
-                <li><a href="croprecommendation.html">Crop Recommendation</a></li>
-                <li><a href="seedbank.html">Seed Bank</a></li>
-                <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                <li><a href="myaccount.html"><i class="fa fa-user"></i></a></li>
-                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-            </ul>
-            <div id="google_element"></div>
-            <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
-            <script>
-            function loadGoogleTranslate() {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en', 
-                    includedLanguages: 'en,ne', 
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-                }, 'google_element');
-            }
-            </script>
-        </nav>
+        <div class="header-container">
+            <a href="home.html" class="logo">TerraVision</a>
+            <div class="nav-container">
+                <div class="hamburger" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="menu" id="main-menu">
+                    <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="aboutus.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="croprecommendation.html"><i class="fas fa-seedling"></i> Crop Recommendation</a></li>
+                    <li><a href="seedbank.html"><i class="fas fa-store"></i> Seed Bank</a></li>
+                    <li><a href="wishlist.html"><i class="fas fa-heart"></i></a></li>
+                    <li><a href="myaccount.html"><i class="fas fa-user"></i></a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
+                </ul>
+                <div id="google_element"></div>
+            </div>
+        </div>
     </header>
-    
-    <img src="C:\Users\Acer\Music\front.png" alt="Soil Testing" class="about-img">
 
-    <section class="features">
-        <div class="feature-box">
-            <h3>🌱 AI-Based Crop Recommendation</h3>
-            <p>Enter soil & climate details and get the best crop suggestion using ML.</p>
-        </div>
-        <div class="feature-box">
-            <h3>🛒 Buy Seeds & Plants</h3>
-            <p>Explore a variety of seeds & plants and order from trusted sellers.</p>
-        </div>
-        <div class="feature-box">
-            <h3>📊 Smart Farming Insights</h3>
-            <p>Get personalized tips on fertilizers, soil health, and weather guidance.</p>
-        </div>
-        <div class="feature-box">
-            <h3>⚡ Easy-to-Use Dashboard</h3>
-            <p>Simple & intuitive interface for hassle-free data input and purchasing.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content animate-fade-in-up">
+                <h1>Smart Farming for Nepal's Future</h1>
+                <p>Revolutionizing agriculture with AI-powered crop recommendations, smart soil analysis, and sustainable farming practices. Join thousands of farmers making data-driven decisions.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                    <a href="croprecommendation.html" class="btn btn-secondary btn-large">
+                        <i class="fas fa-seedling"></i> Get Crop Recommendation
+                    </a>
+                    <a href="seedbank.html" class="btn btn-outline btn-large">
+                        <i class="fas fa-store"></i> Browse Seeds
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="contact-us">
-        <h2>Contact Us</h2>
-        <form action="#" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
+    <!-- Features Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Why Choose TerraVision?</h2>
+                <p>Empowering farmers with cutting-edge technology and scientific insights</p>
+            </div>
+            <div class="grid grid-4">
+                <div class="feature-card animate-fade-in-up">
+                    <span class="feature-icon">🤖</span>
+                    <h3>AI-Powered Recommendations</h3>
+                    <p>Get personalized crop suggestions based on your soil conditions, climate data, and local factors using advanced machine learning.</p>
+                </div>
+                <div class="feature-card animate-fade-in-up">
+                    <span class="feature-icon">🛒</span>
+                    <h3>Premium Seed Marketplace</h3>
+                    <p>Access high-quality seeds and plants from trusted suppliers. Compare prices, read reviews, and order with confidence.</p>
+                </div>
+                <div class="feature-card animate-fade-in-up">
+                    <span class="feature-icon">📊</span>
+                    <h3>Smart Analytics</h3>
+                    <p>Monitor soil health, track weather patterns, and receive actionable insights to optimize your farming operations.</p>
+                </div>
+                <div class="feature-card animate-fade-in-up">
+                    <span class="feature-icon">🌱</span>
+                    <h3>Sustainable Practices</h3>
+                    <p>Learn eco-friendly farming techniques that improve yield while protecting the environment for future generations.</p>
+                </div>
+            </div>
+        </div>
     </section>
-    
+
+    <!-- Stats Section -->
+    <section class="section" style="background: var(--bg-primary);">
+        <div class="container">
+            <div class="grid grid-4 text-center">
+                <div>
+                    <h3 style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 0.5rem;">10,000+</h3>
+                    <p>Farmers Served</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 2.5rem; color: var(--secondary-color); margin-bottom: 0.5rem;">95%</h3>
+                    <p>Accuracy Rate</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 2.5rem; color: var(--accent-color); margin-bottom: 0.5rem;">50+</h3>
+                    <p>Crop Varieties</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 2.5rem; color: var(--success-color); margin-bottom: 0.5rem;">24/7</h3>
+                    <p>Support Available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>How TerraVision Works</h2>
+                <p>Simple steps to transform your farming experience</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">📝</div>
+                        <h3>1. Input Your Data</h3>
+                        <p>Enter your soil conditions, climate data, and farming preferences through our intuitive interface.</p>
+                    </div>
+                </div>
+                <div class="card text-center">
+                    <div class="card-body">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🧠</div>
+                        <h3>2. AI Analysis</h3>
+                        <p>Our advanced algorithms analyze your data against thousands of successful farming patterns.</p>
+                    </div>
+                </div>
+                <div class="card text-center">
+                    <div class="card-body">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🌾</div>
+                        <h3>3. Get Recommendations</h3>
+                        <p>Receive personalized crop suggestions and access our seed marketplace to start growing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" style="background: var(--bg-primary);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Get In Touch</h2>
+                <p>Have questions? We're here to help you succeed</p>
+            </div>
+            <div class="form-container">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Your Name</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea id="message" name="message" class="form-input" rows="4" placeholder="Tell us how we can help you" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; align-items: center;">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <p>Copyright © 2025 TerraVision</p>
+        <div class="container">
+            <p>&copy; 2025 TerraVision. Empowering farmers with smart technology.</p>
+        </div>
     </footer>
+
+    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+    <script>
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en', 
+                includedLanguages: 'en,ne', 
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_element');
+        }
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        const hamburger = document.getElementById('hamburger-menu');
+        const menu = document.getElementById('main-menu');
+        hamburger.onclick = function() {
+            menu.classList.toggle('open');
+        };
+    </script>
 </body>
 </html>

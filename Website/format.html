@@ -97,31 +97,36 @@
 
 <body>
     <header>
-        <div class="logo">TerraVision</div>
-        <nav>
-            <div class="search-container">
-                <input type="text" id="search" placeholder="Search...">
-                <button type="submit"><i class="fa fa-search"></i></button>
+        <div class="header-container">
+            <a href="home.html" class="logo">TerraVision</a>
+            <div class="nav-container">
+                <div class="hamburger" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="menu" id="main-menu">
+                    <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="aboutus.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="croprecommendation.html"><i class="fas fa-seedling"></i> Crop Recommendation</a></li>
+                    <li><a href="seedbank.html"><i class="fas fa-store"></i> Seed Bank</a></li>
+                    <li><a href="wishlist.html"><i class="fas fa-heart"></i></a></li>
+                    <li><a href="myaccount.html"><i class="fas fa-user"></i></a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
+                </ul>
+                <div id="google_element"></div>
             </div>
-            <ul class="menu">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="aboutus.html">About Us</a></li>
-                <li><a href="croprecommendation.html">Crop Recommendation</a></li>
-                <li><a href="seedbank.html">Seed Bank</a></li>
-            </ul>
-            <div class="language-toggle">
-                <img src="C:\Users\Acer\Music\usa .jpg" alt="English" id="english" onclick="changeLanguage('en')">
-                <img src="C:\Users\Acer\Music\NP.png" alt="Nepali" id="nepali" onclick="changeLanguage('ne')">
-            </div>
-            <ul class="menu">
-                <li><a href="wishlist.htm"><i class="fa fa-heart"></i></a></li>
-                <li><a href="myaccount"><i class="fa fa-user"></i></a></li>
-                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-            </ul>
-        </nav>
+        </div>
     </header>
     <footer>
         <p>Copyright © 2025 TerraVision | Powered by IIMS Student</p>
     </footer>
+    <script>
+        const hamburger = document.getElementById('hamburger-menu');
+        const menu = document.getElementById('main-menu');
+        hamburger.onclick = function() {
+            menu.classList.toggle('open');
+        };
+    </script>
 </body>
 </html>

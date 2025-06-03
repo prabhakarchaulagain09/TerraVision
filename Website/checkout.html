@@ -3,325 +3,636 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Listing - TerraVision</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
-    <link rel="stylesheet" href="style.css"> 
-    <style>
-        .main-container {
-            width: 80%;
-            margin: 20px auto;
-            display: flex;
-            justify-content: space-between;
-            gap: 20px; 
-        }
-
-        .checkout-container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 60%;
-        }
-
-        .checkout-summary {
-           background: white;
-           padding: 20px;
-           border-radius: 10px;
-           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-           width: 35%;
-        }
-
-        .cart-summary p {
-            margin: 10px 0;
-        }
-        .cart-summary button {
-            width: 100%;
-            padding: 10px;
-            background: rgb(59, 59, 255);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-        .cart-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .cart-table th, .cart-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        .cart-table th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        input[type="text"], input[type="email"], input[type="tel"], input[type="number"] {
-            width: 95%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        label {
-            font-weight: bold;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-        /* Your existing styles here */
-        .qr-container {
-            display: none;
-            margin-top: 5px;
-        }
-        .screenshot-upload {
-            display: none;
-            margin-top: 10px;
-        }
-        .screenshot-upload input[type="file"] {
-            padding: 8px;
-            font-size: 16px;
-        }
-        .qr-container img {
-            max-width: 70%;
-            height: auto;
-        }
-    </style>
+    <title>Checkout - TerraVision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="logo">TerraVision</div>
-        <nav>
-            <div class="nav-right">
-            <ul class="menu">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="aboutus.html">About Us</a></li>
-                <li><a href="croprecommendation.html">Crop Recommendation</a></li>
-                <li><a href="seedbank.html">Seed Bank</a></li>
-                <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                <li><a href="myaccount.html"><i class="fa fa-user"></i></a></li>
-                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i></a></li>
-            </ul>
-            <div id="google_element"></div>
-            <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
-            <script>
-            function loadGoogleTranslate() {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en', 
-                    includedLanguages: 'en,ne', 
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-                }, 'google_element');
-            }
-            </script>
-        </nav>
-    </header>
-
-    <div class="main-container">
-        <!-- Checkout Form Section -->
-        <div class="checkout-container">
-            <form action="process_order.php" method="POST" onsubmit="return validateForm()">
-                <!-- Left Side: Personal & Address Details -->
-                <div class="form-left">
-                    <label>Full name *<br>
-                        <input type="text" name="first_name" required placeholder="Enter your full name">
-                    </label><br>
-
-                    <label>Phone *<br>
-                        <input type="tel" name="phone" required placeholder="Enter your phone number">
-                    </label><br>
-
-                    <label>Email address *<br>
-                        <input type="email" name="email" required placeholder="Enter your email address">
-                    </label><br>
-
-                    <label>Street address *<br>
-                        <input type="text" name="address" required placeholder="Enter your street address">
-                    </label><br>
-
-                    <label>Town / City *<br>
-                        <input type="text" name="city" required placeholder="Enter your city">
-                    </label><br>
-
-                    <label>Province *<br>
-                        <input type="text" name="province" required placeholder="Enter your province">
-                    </label><br>
-
-                    <label>Postcode / ZIP (optional)<br>
-                        <input type="text" name="postcode" placeholder="Enter your postcode">
-                    </label><br>
+        <div class="header-container">
+            <a href="home.html" class="logo">TerraVision</a>
+            <div class="nav-container">
+                <div class="hamburger" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
-            </form>
-        </div>
-
-
-        <!-- Checkout Summary Section (Right side) -->
-        <div class="checkout-summary">
-            <h3>Product Summary</h3>
-            <table class="cart-table" id="cart-table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody id="cart-body">
-                    <!-- Cart items will be dynamically loaded here -->
-                </tbody>
-            </table>
-
-            <div class="cart-summary">
-                <p><strong>Subtotal: <span id="checkout-subtotal">Rs. 0</span></strong></p>
-                <p><strong>Total: <span id="checkout-total">Rs. 0</span></strong></p>
-
-                <br><h3>Payment Method</h3>
-                <label>
-                    <input type="radio" name="payment_method" value="cod" checked onclick="togglePaymentMethod()"> Cash on delivery
-                </label><br>
-                <label>
-                    <input type="radio" name="payment_method" value="esewa" onclick="togglePaymentMethod()"> eSewa
-                </label><br>
-
-                <div class="qr-container" id="qr-container">
-                    <h4>Scan the QR code for payment:</h4>
-                    <img src="C:\Users\Acer\OneDrive\Desktop\Website\images\qr.jpg" alt="eSewa QR Code">
-                </div>
-
-                <div class="screenshot-upload" id="screenshot-upload">
-                    <label for="payment-screenshot">Upload Screenshot of Payment:</label><br>
-                    <input type="file" id="payment-screenshot" name="payment-screenshot" accept="image/*">
-                </div>
-
-                <button type="submit">Place Order</button>
+                <ul class="menu" id="main-menu">
+                    <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="aboutus.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="croprecommendation.html"><i class="fas fa-seedling"></i> Crop Recommendation</a></li>
+                    <li><a href="seedbank.html"><i class="fas fa-store"></i> Seed Bank</a></li>
+                    <li><a href="wishlist.html"><i class="fas fa-heart"></i></a></li>
+                    <li><a href="myaccount.html"><i class="fas fa-user"></i></a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
+                </ul>
+                <div id="google_element"></div>
             </div>
         </div>
-    </div>
+    </header>
 
-    <form action="process_order.php" method="POST" onsubmit="return validateForm()">
+    <main class="section">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="text-center mb-5">
+                <h1><i class="fas fa-credit-card"></i> Checkout</h1>
+                <p class="text-secondary">Complete your order</p>
+            </div>
 
+            <!-- Checkout Progress -->
+            <div class="checkout-progress mb-5">
+                <div class="progress-steps">
+                    <div class="step completed">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                    </div>
+                    <div class="step active">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Checkout</span>
+                    </div>
+                    <div class="step">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Complete</span>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Checkout Content -->
+            <div class="checkout-container">
+                <div class="checkout-grid">
+                    <!-- Billing Information -->
+                    <div class="billing-section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-user"></i> Billing Information</h3>
+                            </div>
+                            <div class="card-body">
+                                <form id="checkout-form">
+                                    <div class="form-group">
+                                        <label class="form-label">Full Name *</label>
+                                        <input type="text" name="fullName" class="form-input" required 
+                                               placeholder="Enter your full name">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Email Address *</label>
+                                        <input type="email" name="email" class="form-input" required 
+                                               placeholder="Enter your email address">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Phone Number *</label>
+                                        <input type="tel" name="phone" class="form-input" required 
+                                               placeholder="Enter your phone number">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Street Address *</label>
+                                        <input type="text" name="address" class="form-input" required 
+                                               placeholder="Enter your street address">
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">City *</label>
+                                            <input type="text" name="city" class="form-input" required 
+                                                   placeholder="Enter your city">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Province *</label>
+                                            <input type="text" name="province" class="form-input" required 
+                                                   placeholder="Enter your province">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Postcode / ZIP (Optional)</label>
+                                        <input type="text" name="postcode" class="form-input" 
+                                               placeholder="Enter your postcode">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="payment-methods">
+                                    <div class="payment-option">
+                                        <label class="payment-label">
+                                            <input type="radio" name="paymentMethod" value="cod" checked>
+                                            <div class="payment-card">
+                                                <i class="fas fa-money-bill-wave"></i>
+                                                <div>
+                                                    <h4>Cash on Delivery</h4>
+                                                    <p>Pay when you receive your order</p>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+
+                                    <div class="payment-option">
+                                        <label class="payment-label">
+                                            <input type="radio" name="paymentMethod" value="esewa">
+                                            <div class="payment-card">
+                                                <i class="fas fa-mobile-alt"></i>
+                                                <div>
+                                                    <h4>eSewa</h4>
+                                                    <p>Pay securely with eSewa</p>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- eSewa QR Code -->
+                                <div id="esewa-payment" class="payment-details" style="display: none;">
+                                    <div class="qr-section">
+                                        <h4>Scan QR Code to Pay</h4>
+                                        <div class="qr-container">
+                                            <img src="images/qr.jpg" alt="eSewa QR Code" class="qr-image">
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <label class="form-label">Upload Payment Screenshot *</label>
+                                            <input type="file" name="paymentScreenshot" class="form-input" 
+                                                   accept="image/*">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="summary-section">
+                        <div class="card sticky-summary">
+                            <div class="card-header">
+                                <h3><i class="fas fa-receipt"></i> Order Summary</h3>
+                            </div>
+                            <div class="card-body">
+                                <!-- Cart Items -->
+                                <div class="order-items" id="order-items">
+                                    <!-- Items will be loaded here -->
+                                </div>
+
+                                <!-- Order Totals -->
+                                <div class="order-totals">
+                                    <div class="total-row">
+                                        <span>Subtotal:</span>
+                                        <span id="subtotal">Rs. 0</span>
+                                    </div>
+                                    <div class="total-row">
+                                        <span>Shipping:</span>
+                                        <span class="text-success">Free</span>
+                                    </div>
+                                    <div class="total-row total-final">
+                                        <span><strong>Total:</strong></span>
+                                        <span><strong id="total">Rs. 0</strong></span>
+                                    </div>
+                                </div>
+
+                                <!-- Place Order Button -->
+                                <button type="button" onclick="placeOrder()" class="btn btn-primary btn-large w-full">
+                                    <i class="fas fa-check-circle"></i> Place Order
+                                </button>
+
+                                <div class="security-info mt-3">
+                                    <p class="text-center text-secondary">
+                                        <i class="fas fa-shield-alt"></i>
+                                        Your information is secure and encrypted
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TerraVision. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Google Translate Script -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    loadCheckout(); // Load checkout details when page loads
-});
-
-document.querySelector("button[type='submit']").addEventListener("click", function(event) {
-    event.preventDefault(); // Prevent form submission
-
-    // Get form data safely
-    let fullName = document.querySelector("input[name='first_name']").value.trim();
-    let phone = document.querySelector("input[name='phone']").value.trim();
-    let email = document.querySelector("input[name='email']").value.trim();
-    let address = [
-        document.querySelector("input[name='address']").value.trim(),
-        document.querySelector("input[name='city']").value.trim()
-    ].filter(Boolean).join(", ");
-    let paymentMethodInput = document.querySelector("input[name='payment_method']:checked");
-    let paymentMethod = paymentMethodInput ? paymentMethodInput.value : "";
-
-    // Check if any required field is empty
-    if (!fullName || !phone || !email || !address || !paymentMethod) {
-        alert("Please fill in all the required fields.");
-        return; // Stop further execution if validation fails
-    }
-
-    // Get cart items from localStorage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let cartItems = cart.map(item => ({
-        name: item.name,
-        price: parseFloat(item.price) || 0,
-        quantity: parseInt(item.quantity, 10) || 1
-    }));
-
-    // Calculate total price
-    let totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-
-    // Generate a unique order number
-    let orderNumber = "#ORD" + Math.floor(1000 + Math.random() * 9000);
-
-    // Store order details in localStorage
-    let orderDetails = {
-        orderNumber: orderNumber,
-        fullName: fullName,
-        phone: phone,
-        email: email,
-        address: address,
-        paymentMethod: paymentMethod,
-        cartItems: cartItems,
-        totalPrice: totalPrice
-    };
-
-    localStorage.setItem("orderDetails", JSON.stringify(orderDetails));
-
-    // Redirect to order confirmation page
-    window.location.href = "order.html";
-});
-
-function loadCheckout() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartBody = document.getElementById('cart-body');
-    cartBody.innerHTML = '';
-
-    if (cart.length === 0) {
-        cartBody.innerHTML = '<tr><td colspan="4">Your cart is empty.</td></tr>';
-        return;
-    }
-
-    cart.forEach(item => {
-        const price = parseFloat(item.price) || 0;
-        const quantity = parseInt(item.quantity, 10) || 1;
-        const subtotal = price * quantity;
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${item.name}</td>
-            <td>Rs. ${price}</td>
-            <td>${quantity}</td>
-            <td>Rs. ${subtotal}</td>
-        `;
-        cartBody.appendChild(row);
-    });
-
-    updateCheckoutTotals(cart);
-}
-
-function updateCheckoutTotals(cart) {
-    let cartTotal = cart.reduce((total, item) => {
-        const price = parseFloat(item.price) || 0;
-        const quantity = parseInt(item.quantity, 10) || 1;
-        return total + (price * quantity);
-    }, 0);
-
-    document.getElementById('checkout-total').innerText = `Rs. ${cartTotal}`;
-    document.getElementById('checkout-subtotal').innerText = `Rs. ${cartTotal}`;
-}
-
-function togglePaymentMethod() {
-    const paymentMethod = document.querySelector('input[name="payment_method"]:checked')?.value;
-    const qrContainer = document.getElementById('qr-container');
-    const screenshotUpload = document.getElementById('screenshot-upload');
-
-    if (paymentMethod === 'esewa') {
-        qrContainer.style.display = 'block';
-        screenshotUpload.style.display = 'block';
-    } else {
-        qrContainer.style.display = 'none';
-        screenshotUpload.style.display = 'none';
-    }
-}
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,ne',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_element');
+        }
     </script>
 
-<footer>
-    <p>Copyright © 2025 TerraVision</p>
-</footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            loadCheckout();
+            setupPaymentMethodToggle();
+        });
+
+        function loadCheckout() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const orderItems = document.getElementById('order-items');
+            
+            orderItems.innerHTML = '';
+
+            if (cart.length === 0) {
+                orderItems.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart" style="font-size: 2rem; color: var(--text-light);"></i>
+                        <p>Your cart is empty</p>
+                        <a href="seedbank.html" class="btn btn-primary">Continue Shopping</a>
+                    </div>
+                `;
+                return;
+            }
+
+            cart.forEach(item => {
+                const price = parseFloat(item.price) || 0;
+                const quantity = parseInt(item.quantity, 10) || 1;
+                const subtotal = price * quantity;
+
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="item-image">
+                    <div class="item-details">
+                        <h4>${item.name}</h4>
+                        <p>Qty: ${quantity} × Rs. ${price}</p>
+                    </div>
+                    <div class="item-total">
+                        Rs. ${subtotal}
+                    </div>
+                `;
+                orderItems.appendChild(itemElement);
+            });
+
+            updateTotals(cart);
+        }
+
+        function updateTotals(cart) {
+            const total = cart.reduce((sum, item) => {
+                const price = parseFloat(item.price) || 0;
+                const quantity = parseInt(item.quantity, 10) || 1;
+                return sum + (price * quantity);
+            }, 0);
+
+            document.getElementById('subtotal').textContent = `Rs. ${total}`;
+            document.getElementById('total').textContent = `Rs. ${total}`;
+        }
+
+        function setupPaymentMethodToggle() {
+            const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+            const esewaPayment = document.getElementById('esewa-payment');
+
+            paymentMethods.forEach(method => {
+                method.addEventListener('change', function() {
+                    if (this.value === 'esewa') {
+                        esewaPayment.style.display = 'block';
+                    } else {
+                        esewaPayment.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        function placeOrder() {
+            const form = document.getElementById('checkout-form');
+            const formData = new FormData(form);
+            
+            // Validate required fields
+            const requiredFields = ['fullName', 'email', 'phone', 'address', 'city', 'province'];
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                const input = form.querySelector(`[name="${field}"]`);
+                if (!input.value.trim()) {
+                    input.style.borderColor = 'var(--error-color)';
+                    isValid = false;
+                } else {
+                    input.style.borderColor = 'var(--border-color)';
+                }
+            });
+
+            if (!isValid) {
+                showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+
+            // Get form data
+            const orderData = {
+                orderNumber: "#ORD" + Math.floor(1000 + Math.random() * 9000),
+                fullName: formData.get('fullName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                address: `${formData.get('address')}, ${formData.get('city')}, ${formData.get('province')}`,
+                paymentMethod: document.querySelector('input[name="paymentMethod"]:checked').value,
+                cartItems: JSON.parse(localStorage.getItem('cart')) || [],
+                totalPrice: calculateTotal()
+            };
+
+            // Store order details
+            localStorage.setItem("orderDetails", JSON.stringify(orderData));
+
+            // Show loading state
+            const button = event.target;
+            button.innerHTML = '<div class="spinner"></div> Processing...';
+            button.disabled = true;
+
+            // Simulate processing time
+            setTimeout(() => {
+                // Clear cart
+                localStorage.removeItem('cart');
+                
+                // Redirect to order confirmation
+                window.location.href = "order.html";
+            }, 2000);
+        }
+
+        function calculateTotal() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            return cart.reduce((total, item) => {
+                const price = parseFloat(item.price) || 0;
+                const quantity = parseInt(item.quantity, 10) || 1;
+                return total + (price * quantity);
+            }, 0);
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type} notification`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'times-circle' : 'exclamation-triangle'}"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+
+    <script>
+        const hamburger = document.getElementById('hamburger-menu');
+        const menu = document.getElementById('main-menu');
+        hamburger.onclick = function() {
+            menu.classList.toggle('open');
+        };
+    </script>
+
+    <style>
+        .checkout-progress {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+        }
+
+        .step i {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-accent);
+            color: var(--text-light);
+            font-size: 1.25rem;
+        }
+
+        .step.completed i {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .step.active i {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .payment-option {
+            position: relative;
+        }
+
+        .payment-label {
+            cursor: pointer;
+            display: block;
+        }
+
+        .payment-label input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .payment-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+        }
+
+        .payment-label input[type="radio"]:checked + .payment-card {
+            border-color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .payment-card i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .payment-card h4 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .payment-card p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .qr-section {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            margin-top: 1rem;
+        }
+
+        .qr-container {
+            margin: 1rem 0;
+        }
+
+        .qr-image {
+            max-width: 200px;
+            height: auto;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+        }
+
+        .sticky-summary {
+            position: sticky;
+            top: 2rem;
+        }
+
+        .order-items {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+        }
+
+        .item-details h4 {
+            margin: 0;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .item-details p {
+            margin: 0;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .item-total {
+            margin-left: auto;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .order-totals {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .total-final {
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 1.125rem;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .security-info {
+            text-align: center;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .notification {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            min-width: 300px;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-steps {
+                gap: 1rem;
+            }
+
+            .step span {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
 </body>
 </html>
-    
-    
